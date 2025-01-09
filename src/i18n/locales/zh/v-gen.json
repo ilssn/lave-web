@@ -1,0 +1,268 @@
+{
+  "title": "AI视频生成器",
+  "desc": "使用AI快速生成各种定制视频",
+  "task": {
+    "title": "创建视频",
+    "empty": "暂无视频生成任务",
+    "total": "共 {{count}} 条视频生成中",
+    "clear": "清空任务"
+  },
+  "form": {
+    "model": {
+      "title": "视频模型",
+      "desc": "选择模型",
+      "option": {
+        "luma": "Luma",
+        "kling": "Kling",
+        "runway": "Runway",
+        "cog": "智谱",
+        "minimax": "Minimax",
+        "pika": "Pika",
+        "genmo": "Mochi-V1",
+        "haiper": "Haiper",
+        "pixverse": "PixVerse",
+        "lightricks": "Lightricks",
+        "hunyuan": "Hunyuan",
+        "vidu": "Vidu"
+      }
+    },
+    "prompt": {
+      "title": "视频内容",
+      "desc": "请输入您想要生成的视频内容"
+    },
+    "first_frame": {
+      "title": "视频首帧",
+      "desc": "拖入或点击上传图片"
+    },
+    "last_frame": {
+      "title": "视频尾帧",
+      "desc": "拖入或点击上传图片"
+    },
+    "third_frame": {
+      "title": "视频第三帧",
+      "desc": "拖入或点击上传图片"
+    },
+    "main_image1": {
+      "title": "主体图片1",
+      "desc": "请上传主体图片1"
+    },
+    "main_image2": {
+      "title": "主体图片2",
+      "desc": "请上传主体图片2"
+    },
+    "main_image3": {
+      "title": "主体图片3",
+      "desc": "请上传主体图片3"
+    },
+    "ratio": {
+      "title": "视频比例",
+      "desc": "选择视频生成比例",
+      "option": {
+        "custom": "自定义"
+      }
+    },
+    "type": {
+      "title": "生成模式",
+      "desc": "选择视频生成模式",
+      "option": {
+        "fast": "快速",
+        "hq": "高清"
+      }
+    },
+    "time": {
+      "title": "视频时长",
+      "desc": "选择视频时长",
+      "option": {
+        "short": "5秒",
+        "long": "10秒"
+      }
+    },
+    "loop": {
+      "title": "视频循环",
+      "desc": "选择是否开启视频循环",
+      "option": {
+        "open": "开启循环",
+        "close": "关闭循环"
+      }
+    },
+    "audio": {
+      "title": "音效设置",
+      "desc": "选择是否开启视频音效",
+      "option": {
+        "open": "开启音效",
+        "close": "关闭音效"
+      }
+    },
+    "camera": {
+      "title": "镜头控制",
+      "desc": "选择视频镜头方向",
+      "option": {
+        "none": "无",
+        "move_left": "左移",
+        "move_right": "右移",
+        "move_up": "上移",
+        "move_down": "下移",
+        "push_in": "推进",
+        "push_out": "推出",
+        "pan_left": "左摇",
+        "pan_right": "右摇",
+        "orbit_left": "左环绕",
+        "orbit_right": "右环绕",
+        "grane_up": "上升",
+        "grane_down": "下降"
+      }
+    },
+    "style": {
+      "title": "视频特效",
+      "desc": "选择视频特效",
+      "option": {
+        "none": "无",
+        "inflate": "膨胀",
+        "melt": "融化",
+        "explode": "爆炸",
+        "squish": "挤扁",
+        "crush": "压扁",
+        "cake_ify": "切开",
+        "ta_da": "隐藏",
+        "deflate": "泄气",
+        "crumble": "碎裂",
+        "dissolve": "分解"
+      }
+    },
+    "template": {
+      "title": "视频特效",
+      "desc": "选择视频特效",
+      "option": {
+        "hairCurl": "万物皆可羊毛卷",
+        "hairKing": "发量王者",
+        "wonderWomanTransformation": "神奇女侠变身",
+        "catwomanTransformation": "疯狂猫女变身",
+        "harleyQuinnTransformation": "小丑女哈莉·奎茵变身",
+        "muscleMan": "成为肌肉猛男",
+        "summonHulk": "变身成绿巨人",
+        "jokerRebirth": "变身成小丑",
+        "ironmanTransformation": "变身成钢铁侠",
+        "batmanReturns": "变身成蝙蝠侠",
+        "wickedShots": "恶作剧射击",
+        "venomTransformation": "变身成毒液",
+        "venomColorBox": "变身成毒液(彩色盲盒版)",
+        "hugYourLove": "爱的抱抱",
+        "zombieMode": "僵尸模式",
+        "squishIt": "压扁它",
+        "zombieHand": "僵尸之手",
+        "wizardHat": "巫师帽",
+        "leggyRun": "腿长跑酷",
+        "monsterInvades": "怪物入侵",
+        "legoBlast": "乐高爆炸"
+      }
+    },
+    "vidu_type": {
+      "title": "视频类型",
+      "desc": "选择视频生成类型",
+      "option": {
+        "general": "通用",
+        "character": "参考主体生成视频",
+        "scene": "生成场景特效视频"
+      }
+    },
+    "vidu_style": {
+      "title": "视频风格",
+      "desc": "选择视频风格",
+      "option": {
+        "general": "通用",
+        "anime": "动漫"
+      }
+    },
+    "vidu_time": {
+      "title": "视频时长",
+      "desc": "选择视频时长",
+      "option": {
+        "short": "4秒",
+        "long": "8秒"
+      }
+    },
+    "vidu_resolution": {
+      "title": "视频分辨率",
+      "desc": "选择视频分辨率",
+      "option": {
+        "sd": "标清",
+        "hd": "高清",
+        "fhd": "超清"
+      }
+    },
+    "vidu_scene": {
+      "title": "场景效果",
+      "desc": "选择场景效果",
+      "option": {
+        "hug": "拥抱",
+        "kiss": "亲吻",
+        "christmas_effect": "变身圣诞老人",
+        "santa_gifts": "圣诞老人送礼",
+        "merry_christmas": "圣诞老人举杯祝贺",
+        "santa_hug": "圣诞老人拥抱",
+        "inflate": "膨胀",
+        "twist": "捏捏",
+        "explode": "爆炸",
+        "melt": "融化"
+      }
+    }
+  },
+  "action": {
+    "create_video": "生成视频",
+    "extend_video": "拓展视频",
+    "extend_video_time": "拓展时长",
+    "extend_video_upscale": "提升分辨率",
+    "extend_video_ratio": "调整比例",
+    "extend_video_style": "调整风格",
+    "extend_video_audio": "添加配音",
+    "recreate_video": "重新生成",
+    "edit_video": "重新编辑",
+    "download_video": "下载视频",
+    "delete_task": "删除任务",
+    "delete_video": "删除视频"
+  },
+  "info": {
+    "video_on_create": "视频生成中",
+    "video_on_extend": "视频拓展中",
+    "video_on_audio": "视频配音中"
+  },
+  "example": {
+    "prompt": "在清晨的薄雾中，阳光透过树梢，洒下斑驳的光影，给大地披上了一层金色的薄纱。远处，青山如黛，层层叠叠地延伸至天际，与蔚蓝的天空融为一体。近处，小溪潺潺流水，清澈见底，溪畔野花竞相开放，红的、黄的、紫的，仿佛大地的调色盘。微风拂过，花香与泥土的芬芳交织在一起，清新怡人。此刻，天地如此静谧，仿佛时光在这一刻凝滞，令人心旷神怡",
+    "try": "试一试"
+  },
+  "dialog": {
+    "extend_ratio": {
+      "title": "调整视频比例",
+      "description": "通过AI技术调整视频比例",
+      "horizontal_screen": "横屏",
+      "vertical_screen": "竖屏"
+    },
+    "extend_style": {
+      "title": "调整视频风格",
+      "description": "通过AI技术调整视频风格"
+    },
+    "extend_upscale": {
+      "title": "提升视频分辨率",
+      "description": "通过AI技术提升视频分辨率和质量"
+    },
+    "extend_audio": {
+      "title": "添加视频配音",
+      "description": "通过AI技术为视频添加配音"
+    },
+    "video_content": "视频内容",
+    "video_content_placeholder": "请输入视频内容",
+    "video_content_style": "视频风格",
+    "video_content_style_placeholder": "请输入视频风格",
+    "audio_content": "配音内容",
+    "audio_content_placeholder": "请输入配音要求",
+    "video_ratio": "视频比例",
+    "video_duration": "视频时长",
+    "video_resolution": "视频分辨率",
+    "select_duration": "选择时长",
+    "select_resolution": "选择分辨率",
+    "duration": "视频时长",
+    "seconds": "秒",
+    "submit": "确认",
+    "cancel": "取消"
+  }
+}

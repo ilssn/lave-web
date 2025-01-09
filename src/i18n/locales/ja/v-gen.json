@@ -1,0 +1,268 @@
+{
+  "title": "AIビデオジェネレーター",
+  "desc": "AIを使用して様々なカスタマイズビデオを素早く生成",
+  "task": {
+    "title": "ビデオを作成",
+    "empty": "ビデオ生成タスクはありません",
+    "total": "合計{{count}}本のビデオ生成中",
+    "clear": "タスクをクリア"
+  },
+  "form": {
+    "model": {
+      "title": "ビデオモデル",
+      "desc": "モデルを選択",
+      "option": {
+        "luma": "Luma",
+        "kling": "Kling",
+        "runway": "Runway",
+        "cog": "智谱",
+        "minimax": "Minimax",
+        "pika": "Pika",
+        "genmo": "Mochi-V1",
+        "haiper": "Haiper",
+        "pixverse": "PixVerse",
+        "lightricks": "Lightricks",
+        "hunyuan": "Hunyuan",
+        "vidu": "Vidu"
+      }
+    },
+    "prompt": {
+      "title": "ビデオ内容",
+      "desc": "生成したいビデオの内容を入力してください"
+    },
+    "first_frame": {
+      "title": "ビデオ初フレーム",
+      "desc": "ドラッグまたはクリックして画像をアップロード"
+    },
+    "last_frame": {
+      "title": "ビデオ最後のフレーム",
+      "desc": "ドラッグまたはクリックして画像をアップロード"
+    },
+    "third_frame": {
+      "title": "ビデオ第三フレーム",
+      "desc": "ドラッグまたはクリックして画像をアップロード"
+    },
+    "main_image1": {
+      "title": "メイン画像1",
+      "desc": "ドラッグまたはクリックして画像をアップロード"
+    },
+    "main_image2": {
+      "title": "メイン画像2",
+      "desc": "ドラッグまたはクリックして画像をアップロード"
+    },
+    "main_image3": {
+      "title": "メイン画像3",
+      "desc": "ドラッグまたはクリックして画像をアップロード"
+    },
+    "ratio": {
+      "title": "ビデオ比率",
+      "desc": "ビデオ生成比率を選択",
+      "option": {
+        "custom": "カスタム"
+      }
+    },
+    "type": {
+      "title": "生成モード",
+      "desc": "ビデオ生成モードを選択",
+      "option": {
+        "fast": "快速",
+        "hq": "高精細"
+      }
+    },
+    "time": {
+      "title": "ビデオ長さ",
+      "desc": "ビデオの長さを選選",
+      "option": {
+        "short": "5秒",
+        "long": "10秒"
+      }
+    },
+    "loop": {
+      "title": "ビデオループ",
+      "desc": "ビデオループを有効化するか選択",
+      "option": {
+        "open": "ループを有効化",
+        "close": "ループを無効化"
+      }
+    },
+    "audio": {
+      "title": "音響設定",
+      "desc": "ビデオの音響を有効化するか選択",
+      "option": {
+        "open": "音響を有効化",
+        "close": "音響を無効化"
+      }
+    },
+    "camera": {
+      "title": "カメラ制御",
+      "desc": "ビデオのカメラ方向を選択",
+      "option": {
+        "none": "なし",
+        "move_left": "左に移動",
+        "move_right": "右に移動",
+        "move_up": "上に移動",
+        "move_down": "下に移動",
+        "push_in": "プッシュイン",
+        "push_out": "プッシュアウト",
+        "pan_left": "左にパン",
+        "pan_right": "右にパン",
+        "orbit_left": "左に回転",
+        "orbit_right": "右に回転",
+        "grane_up": "上昇",
+        "grane_down": "下降"
+      }
+    },
+    "style": {
+      "title": "ビデオエフェクト",
+      "desc": "ビデオエフェクトを選択",
+      "option": {
+        "none": "なし",
+        "inflate": "膨張",
+        "melt": "溶融",
+        "explode": "爆発",
+        "squish": "押しつぶす",
+        "crush": "つぶす",
+        "cake_ify": "切り分け",
+        "ta_da": "隠す",
+        "deflate": "収縮",
+        "crumble": "崩壊",
+        "dissolve": "分解"
+      }
+    },
+    "template": {
+      "title": "ビデオエフェクト",
+      "desc": "ビデオエフェクトを選択",
+      "option": {
+        "hairCurl": "万物皆可羊毛卷",
+        "hairKing": "発量王者",
+        "wonderWomanTransformation": "ワンダーウーマン変身",
+        "catwomanTransformation": "キャットウーマン変身",
+        "harleyQuinnTransformation": "ハーレイクイン変身",
+        "muscleMan": "筋肉マンになる",
+        "summonHulk": "ハルクに変身",
+        "jokerRebirth": "ジョーカーに変身",
+        "ironmanTransformation": "アイアンマンに変身",
+        "batmanReturns": "バットマンに変身",
+        "wickedShots": "Wicked Shots",
+        "venomTransformation": "ヴェノムに変身",
+        "venomColorBox": "ヴェノム（ブラインドボックス版）",
+        "hugYourLove": "愛の抱擁",
+        "zombieMode": "ゾンビモード",
+        "squishIt": "Squish It",
+        "zombieHand": "ゾンビハンド",
+        "wizardHat": "ウィザードハット",
+        "leggyRun": "レギーラン",
+        "monsterInvades": "モンスター侵入",
+        "legoBlast": "レゴブラスト"
+      }
+    },
+    "vidu_type": {
+      "title": "ビデオタイプ",
+      "desc": "ビデオ生成タイプを選択",
+      "option": {
+        "general": "一般",
+        "character": "キャラクター",
+        "scene": "シーン"
+      }
+    },
+    "vidu_style": {
+      "title": "ビデオスタイル",
+      "desc": "ビデオスタイルを選択",
+      "option": {
+        "general": "一般",
+        "anime": "アニメ"
+      }
+    },
+    "vidu_time": {
+      "title": "ビデオ時間",
+      "desc": "ビデオ時間を選択",
+      "option": {
+        "short": "4秒",
+        "long": "8秒"
+      }
+    },
+    "vidu_resolution": {
+      "title": "ビデオ解像度",
+      "desc": "ビデオ解像度を選択",
+      "option": {
+        "sd": "標準画質",
+        "hd": "高画質",
+        "fhd": "超高画質"
+      }
+    },
+    "vidu_scene": {
+      "title": "シーン効果",
+      "desc": "シーン効果を選択",
+      "option": {
+        "hug": "ハグ",
+        "kiss": "キス",
+        "christmas_effect": "クリスマス効果",
+        "santa_gifts": "サンタのプレゼント",
+        "merry_christmas": "クリスマスの挨拶",
+        "santa_hug": "サンタのハグ",
+        "inflate": "膨張",
+        "twist": "ねじれ",
+        "explode": "爆発",
+        "melt": "溶解"
+      }
+    }
+  },
+  "action": {
+    "create_video": "ビデオを生成",
+    "extend_video": "ビデオを拡張",
+    "extend_video_time": "再生時間を延長",
+    "extend_video_upscale": "解像度向上",
+    "extend_video_ratio": "比率を延長",
+    "extend_video_style": "スタイルを延長",
+    "extend_video_audio": "音声を追加",
+    "recreate_video": "再生成",
+    "edit_video": "再編集",
+    "download_video": "ビデオをダウンロード",
+    "delete_task": "タスクを削除",
+    "delete_video": "ビデオを削除"
+  },
+  "info": {
+    "video_on_create": "ビデオ生成中",
+    "video_on_extend": "ビデオ拡張中",
+    "video_on_audio": "ビデオ吹き替え中"
+  },
+  "example": {
+    "prompt": "朝の薄霧の中で、陽光が木々の間を通り抜け、まだらな光と影を大地にまぶしていた。遠くには、青翠の山々が重なり合って空と一体化している。近くでは、小川が澄んだ水を流し、岸辺には色とりどりの野花が咲き競っている。それらは大地のパレットのようだ。そよ風が吹き、花の香りと土の香りが混じり合って心地よい。この瞬間、天地はこんなにも静まり返り、時が止まったかのように心が落ち着くようだ",
+    "try": "試してみる"
+  },
+  "dialog": {
+    "extend_ratio": {
+      "title": "動画比率の調整",
+      "description": "AI技術を使用して動画比率を調整",
+      "horizontal_screen": "横画面",
+      "vertical_screen": "縦画面"
+    },
+    "extend_style": {
+      "title": "動画スタイルの調整",
+      "description": "AI技術を使用して動画スタイルを調整"
+    },
+    "extend_upscale": {
+      "title": "動画解像度の向上",
+      "description": "AI技術を使用して動画の解像度と品質を向上"
+    },
+    "extend_audio": {
+      "title": "動画音声の追加",
+      "description": "AI技術を使用して動画に音声を追加"
+    },
+    "video_content": "動画内容",
+    "video_content_placeholder": "動画内容を入力",
+    "video_content_style": "動画スタイル",
+    "video_content_style_placeholder": "動画スタイルを入力",
+    "audio_content": "音声内容",
+    "audio_content_placeholder": "音声内容を入力",
+    "video_ratio": "動画比率",
+    "video_duration": "動画時間",
+    "video_resolution": "動画解像度",
+    "select_duration": "時間を選択",
+    "select_resolution": "解像度を選択",
+    "duration": "時間",
+    "seconds": "秒",
+    "submit": "確認",
+    "cancel": "キャンセル"
+  }
+}

@@ -1,0 +1,268 @@
+{
+  "title": "AI Video Generator",
+  "desc": "Quickly generate various custom videos using AI",
+  "task": {
+    "title": "Create Video",
+    "empty": "No video generation tasks yet",
+    "total": "A total of {{count}} videos being generated",
+    "clear": "Clear tasks"
+  },
+  "form": {
+    "model": {
+      "title": "Video Model",
+      "desc": "Select model",
+      "option": {
+        "luma": "Luma",
+        "kling": "Kling",
+        "runway": "Runway",
+        "cog": "Cog",
+        "minimax": "Minimax",
+        "pika": "Pika",
+        "genmo": "Mochi-V1",
+        "haiper": "Haiper",
+        "pixverse": "PixVerse",
+        "lightricks": "Lightricks",
+        "hunyuan": "Hunyuan",
+        "vidu": "Vidu"
+      }
+    },
+    "prompt": {
+      "title": "Video Content",
+      "desc": "Please enter the content of the video you want to generate"
+    },
+    "first_frame": {
+      "title": "First Frame",
+      "desc": "Drag or click to upload an image"
+    },
+    "last_frame": {
+      "title": "Last Frame",
+      "desc": "Drag or click to upload an image"
+    },
+    "main_image1": {
+      "title": "Main Image 1",
+      "desc": "Please upload main image 1"
+    },
+    "main_image2": {
+      "title": "Main Image 2",
+      "desc": "Please upload main image 2"
+    },
+    "main_image3": {
+      "title": "Main Image 3",
+      "desc": "Please upload main image 3"
+    },
+    "third_frame": {
+      "title": "Video Third Frame",
+      "desc": "Drag and drop or click to upload image"
+    },
+    "ratio": {
+      "title": "Video Ratio",
+      "desc": "Choose video generation ratio",
+      "option": {
+        "custom": "Custom"
+      }
+    },
+    "type": {
+      "title": "Generation Mode",
+      "desc": "Choose video generation mode",
+      "option": {
+        "fast": "Fast",
+        "hq": "High Quality"
+      }
+    },
+    "time": {
+      "title": "Video Duration",
+      "desc": "Choose video duration",
+      "option": {
+        "short": "5 seconds",
+        "long": "10 seconds"
+      }
+    },
+    "loop": {
+      "title": "Video Loop",
+      "desc": "Choose whether to enable video loop",
+      "option": {
+        "open": "Enable loop",
+        "close": "Disable loop"
+      }
+    },
+    "audio": {
+      "title": "Sound Settings",
+      "desc": "Choose whether to enable video sound",
+      "option": {
+        "open": "Enable sound",
+        "close": "Disable sound"
+      }
+    },
+    "camera": {
+      "title": "Camera Control",
+      "desc": "Choose camera direction",
+      "option": {
+        "none": "None",
+        "move_left": "Move Left",
+        "move_right": "Move Right",
+        "move_up": "Move Up",
+        "move_down": "Move Down",
+        "push_in": "Push In",
+        "push_out": "Push Out",
+        "pan_left": "Pan Left",
+        "pan_right": "Pan Right",
+        "orbit_left": "Orbit Left",
+        "orbit_right": "Orbit Right",
+        "grane_up": "Rise",
+        "grane_down": "Descend"
+      }
+    },
+    "style": {
+      "title": "Video Effects",
+      "desc": "Choose video effects",
+      "option": {
+        "none": "None",
+        "inflate": "Inflate",
+        "melt": "Melt",
+        "explode": "Explode",
+        "squish": "Squish",
+        "crush": "Crush",
+        "cake_ify": "Slice",
+        "ta_da": "Hide",
+        "deflate": "Deflate",
+        "crumble": "Crumble",
+        "dissolve": "Dissolve"
+      }
+    },
+    "template": {
+      "title": "Video Effects",
+      "desc": "Select Video Effects",
+      "option": {
+        "hairCurl": "Everything can be curly",
+        "hairKing": "Hair Volume King",
+        "wonderWomanTransformation": "Wonder Woman Transformation",
+        "catwomanTransformation": "Catwoman Transformation",
+        "harleyQuinnTransformation": "Harley Quinn Transformation",
+        "muscleMan": "Become a Muscular Man",
+        "summonHulk": "Transform into the Hulk",
+        "jokerRebirth": "Transform into the Joker",
+        "ironmanTransformation": "Transform into Ironman",
+        "batmanReturns": "Transform into Batman",
+        "wickedShots": "Wicked Shots",
+        "venomTransformation": "Transform into Venom",
+        "venomColorBox": "Venom (Color Box)",
+        "hugYourLove": "Hug Your Love",
+        "zombieMode": "Zombie Mode",
+        "squishIt": "Squish It",
+        "zombieHand": "Zombie Hand",
+        "wizardHat": "Wizard Hat",
+        "leggyRun": "Leggy Run",
+        "monsterInvades": "Monster Invades",
+        "legoBlast": "Lego Blast"
+      }
+    },
+    "vidu_type": {
+      "title": "Video Type",
+      "desc": "Select video generation type",
+      "option": {
+        "general": "General",
+        "character": "Character",
+        "scene": "Scene"
+      }
+    },
+    "vidu_style": {
+      "title": "Video Style",
+      "desc": "Select video style",
+      "option": {
+        "general": "General",
+        "anime": "Anime"
+      }
+    },
+    "vidu_time": {
+      "title": "Video Duration",
+      "desc": "Select video duration",
+      "option": {
+        "short": "4s",
+        "long": "8s"
+      }
+    },
+    "vidu_resolution": {
+      "title": "Video Resolution",
+      "desc": "Select video resolution",
+      "option": {
+        "sd": "SD",
+        "hd": "HD",
+        "fhd": "Ultra HD"
+      }
+    },
+    "vidu_scene": {
+      "title": "Scene Effect",
+      "desc": "Select scene effect",
+      "option": {
+        "hug": "Hug",
+        "kiss": "Kiss",
+        "christmas_effect": "Christmas Effect",
+        "santa_gifts": "Santa Gifts",
+        "merry_christmas": "Christmas Greetings",
+        "santa_hug": "Santa Hug",
+        "inflate": "Inflate",
+        "twist": "Twist",
+        "explode": "Explode",
+        "melt": "Melt"
+      }
+    }
+  },
+  "dialog": {
+    "extend_ratio": {
+      "title": "Adjust Video Ratio",
+      "description": "Adjust video ratio using AI technology",
+      "horizontal_screen": "Horizontal",
+      "vertical_screen": "Vertical"
+    },
+    "extend_style": {
+      "title": "Adjust Video Style",
+      "description": "Adjust video style using AI technology"
+    },
+    "extend_upscale": {
+      "title": "Enhance Video Resolution",
+      "description": "Enhance video resolution and quality using AI technology"
+    },
+    "extend_audio": {
+      "title": "Add Video Voice",
+      "description": "Add voice to video using AI technology"
+    },
+    "video_content": "Video Content",
+    "video_content_placeholder": "Enter video content",
+    "video_content_style": "Video Style",
+    "video_content_style_placeholder": "Enter video style",
+    "audio_content": "Voice Content",
+    "audio_content_placeholder": "Enter voice content",
+    "video_ratio": "Video Ratio",
+    "video_duration": "Video Duration",
+    "video_resolution": "Video Resolution",
+    "select_duration": "Select Duration",
+    "select_resolution": "Select Resolution",
+    "duration": "Duration",
+    "seconds": "s",
+    "submit": "Submit",
+    "cancel": "Cancel"
+  },
+  "action": {
+    "create_video": "Generate Video",
+    "extend_video": "Extend Video",
+    "extend_video_time": "Extend Duration",
+    "extend_video_upscale": "Enhance Resolution",
+    "extend_video_ratio": "Extend Ratio",
+    "extend_video_style": "Extend Style",
+    "extend_video_audio": "Add Voice",
+    "recreate_video": "Regenerate",
+    "edit_video": "Edit Again",
+    "download_video": "Download Video",
+    "delete_task": "Delete Task",
+    "delete_video": "Delete Video"
+  },
+  "info": {
+    "video_on_create": "Video is being generated",
+    "video_on_extend": "Video is being extended",
+    "video_on_audio": "Video is being dubbed"
+  },
+  "example": {
+    "prompt": "In the morning mist, sunlight filters through treetops, casting dappled shadows, draping the earth in a golden veil. In the distance, green mountains stretch layer upon layer to the horizon, merging with the azure sky. Nearby, a stream flows gently, crystal clear, with wildflowers blooming along the banks—red, yellow, purple, like the earth’s palette. As a breeze passes, the fragrance of flowers and earth mingles, fresh and pleasing. At this moment, the world is so tranquil, it’s as if time has stood still, making one feel peaceful and content.",
+    "try": "Try it"
+  }
+}
