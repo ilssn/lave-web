@@ -5,9 +5,7 @@ import { Trash2Icon } from "lucide-react";
 import * as React from "react";
 
 const DynamicForm = () => {
-  const [formData, setFormData] = React.useState([
-    { key: "", type: "string", description: "" },
-  ]);
+  const [formData, setFormData] = React.useState<{ key: string; type: string; description: string }[]>([]);
 
   const handleKeyChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
     const newFormData = [...formData];

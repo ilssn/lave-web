@@ -6,6 +6,16 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+export const isEmptyObject = (obj: object): boolean => {
+  return Object.keys(obj).length === 0;
+};
+
+export const removeEmptyObject = (obj: object): object => {
+  return Object.fromEntries(
+    Object.entries(obj).filter(([k, v]) => k && v !== null && v !== undefined)
+  );
+};
+
 export const mergeData = (target: any, source: any): void => {
   Object.keys(source).forEach((key) => {
     if (

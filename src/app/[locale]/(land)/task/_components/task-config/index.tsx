@@ -48,6 +48,14 @@ const TaskConfig = () => {
             <Label htmlFor="task-description">任务描述</Label>
             <Textarea id="task-description" rows={4} placeholder="任务描述" className="w-full" />
           </div>
+          <div className="w-full">
+            <Label htmlFor="max-depth">最大爬取深度</Label>
+            <Input type="number" defaultValue={1} min={1} id="max-depth" placeholder="最大爬取深度" className="w-full" />
+          </div>
+          <div className="w-full">
+            <Label htmlFor="max-links">最大链接数量</Label>
+            <Input type="number" defaultValue={1} min={1} id="max-links" placeholder="最大链接数量" className="w-full" />
+          </div>
         </CardContent>
         <CardFooter className="flex justify-between">
           <Button className="w-full">开始任务</Button>

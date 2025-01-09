@@ -28,7 +28,7 @@ const TaskConsumer = ({ className }: TaskConsumerProps) => {
             </div>
           </CardHeader>
           <CardContent className="max-h-[calc(100vh-24.5rem)] overflow-y-auto">
-            <div className="h-[380px] w-full bg-gray-100">
+            <div className="h-[410px] w-full bg-gray-100">
               {/* 这里可以添加任务预览的内容 */}
               <div className="flex h-full w-full items-center justify-center">
                 <svg
