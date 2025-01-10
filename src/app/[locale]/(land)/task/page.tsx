@@ -29,7 +29,7 @@ interface pageProps {
   };
 }
 
-const VideoGeneratorPage = () => {
+const TaskPage = () => {
   const { toast } = useToast();
   // const { t } = await serverTranslation(locale);
   const [taskData, setTaskData] = useState<any>({
@@ -50,6 +50,7 @@ const VideoGeneratorPage = () => {
   });
 
   const [taskResult, setTaskResult] = useState<any>([]);
+  const [loading, setLoading] = useState(false);
 
   const handleTaskDataChange = (key: string, value: any) => {
     setTaskData((prevData: any) => ({
@@ -75,6 +76,7 @@ const VideoGeneratorPage = () => {
 
   const handleRunTask = async (data: any) => {
     try {
+      setLoading(true);
       const response = await fetch("http://192.168.199.229:3000/crawler/task", {
         method: "POST",
         headers: {
@@ -125,12 +127,15 @@ const VideoGeneratorPage = () => {
         await new Promise((resolve) => setTimeout(resolve, 2000)); // 等待2秒后再次查询
       }
     } catch (error) {
+      setLoading(false);
       console.error("任务运行出错:", error);
       toast({
         title: "任务出错",
         description: (error as Error).message,
         variant: "destructive",
       });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -146,6 +151,7 @@ const VideoGeneratorPage = () => {
             taskData={taskData}
             onTaskDataChange={handleTaskDataChange}
             onTaskResult={handleTaskResult}
+            loading={loading}
           />
         </div>
         <div className="relative flex-1">
@@ -156,4 +162,4 @@ const VideoGeneratorPage = () => {
   );
 };
 
-export default VideoGeneratorPage;
+export default TaskPage;

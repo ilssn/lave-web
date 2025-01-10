@@ -24,7 +24,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useClientTranslation } from "@/hooks/global";
 import DynamicForm from "./dynamic-form";
 
-const TaskConfig = ({ taskData, onTaskDataChange, onTaskResult }: any) => {
+const TaskConfig = ({ taskData, onTaskDataChange, onTaskResult, loading }: any) => {
   const [showAdvancedConfig, setShowAdvancedConfig] = React.useState(false);
   const { t } = useClientTranslation();
 
@@ -58,7 +58,13 @@ const TaskConfig = ({ taskData, onTaskDataChange, onTaskResult }: any) => {
           </div>
         </CardContent>
         <CardFooter className="flex justify-between">
-          <Button className="w-full" onClick={() => onTaskResult(taskData)}>开始任务</Button>
+          <Button
+            className="w-full"
+            disabled={loading}
+            onClick={() => onTaskResult(taskData)}
+          >
+            {loading ? "任务进行中..." : "开始任务"}
+          </Button>
         </CardFooter>
       </Card>
 
