@@ -42,14 +42,14 @@ const VideoGeneratorPage = () => {
         type: "string",
         description: "AI大模型名称",
       },
-      prompt: {
+      description: {
         type: "string",
         description: "AI大模型功能描述",
       },
     },
   });
 
-  const [taskResult, setTaskResult] = useState<any>(null);
+  const [taskResult, setTaskResult] = useState<any>([]);
 
   const handleTaskDataChange = (key: string, value: any) => {
     setTaskData((prevData: any) => ({
@@ -69,6 +69,7 @@ const VideoGeneratorPage = () => {
       },
       schema: taskData.schema,
     };
+    setTaskResult([]);
     handleRunTask(runData);
   };
 
@@ -98,8 +99,13 @@ const VideoGeneratorPage = () => {
         const statusData = await statusResponse.json();
         taskStatus = statusData.status;
 
-        if (taskStatus === "completed") {
+        // 如果任务结果存在，则设置任务结果
+        if (statusData.results) {
           setTaskResult(statusData.results);
+        }
+
+        // 如果任务状态为完成，则显示任务完成的消息
+        if (taskStatus === "completed") {
           toast({
             title: "任务完成",
             description: "任务已成功完成。",
@@ -107,6 +113,7 @@ const VideoGeneratorPage = () => {
           });
           break;
         } else if (taskStatus === "failed") {
+          // 如果任务状态为失败，则显示任务失败的消息
           toast({
             title: "任务失败",
             description: "任务未能成功完成。",
@@ -142,7 +149,7 @@ const VideoGeneratorPage = () => {
           />
         </div>
         <div className="relative flex-1">
-          <TaskPreview />
+          <TaskPreview results={taskResult || []} />
         </div>
       </section>
     </div>

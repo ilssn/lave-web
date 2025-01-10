@@ -12,32 +12,29 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs";
-
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { DownloadIcon } from "lucide-react";
+import { Textarea } from "@/components/ui/textarea";
 import { ScrollPage } from "./scroll-page";
+
+import { cn } from "@/lib/utils";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 type TaskPreviewProps = {
   className?: string;
+  results: any[];
 };
 
-const TaskPreview = ({ className }: TaskPreviewProps) => {
+const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [currentResult, setCurrentResult] = useState(results[0] || null);
+
+  useEffect(() => {
+    setCurrentResult(results[selectedIndex]);
+  }, [selectedIndex, results]);
+
   return (
     <div className={cn("overflow-y-scroll scroll-smooth", className)}>
       <div className="flex w-full flex-col gap-4">
-        {/* <Card className="w-full rounded-none">
-          <CardHeader className="flex-row items-center justify-between ">
-            <div className="flex-1">
-              <CardTitle className="flex items-center justify-between">
-                任务状态
-              </CardTitle>
-            </div>
-          </CardHeader>
-          <CardContent className="max-h-[calc(100vh-24.5rem)] justify-end overflow-y-auto">
-          </CardContent>
-        </Card> */}
-
         <Card className="relative w-full rounded-none">
           <CardHeader className="flex-row items-center justify-between ">
             <div className="flex-1">
@@ -53,36 +50,45 @@ const TaskPreview = ({ className }: TaskPreviewProps) => {
                 <TabsTrigger value="html">HTML</TabsTrigger>
                 <TabsTrigger value="md">MD</TabsTrigger>
               </TabsList>
-              {/* </div> */}
-              <div className="relative mt-2 h-[404px] w-full">
-                <div className=" absolute top-0 left-0 flex w-full bg-black bg-opacity-40 px-2 py-1 hover:bg-opacity-60 transition-all duration-300 text-xs justify-between text-white">
-                  <p>测试页面</p>
-                  <a href="https://example.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary transition-all duration-300">
-                    https://example.com
-                  </a>
+              <div className="relative mt-2 h-[404px] w-full pt-8">
+                {/* {currentResult ? (
+                  <div className="absolute top-0 left-0 w-full p-4 flex justify-between bg-black bg-opacity-50">
+                    <p className="text-lg font-bold">{currentResult.metadata.title}</p>
+                    <a href={currentResult.url} className="text-blue-500 underline">{currentResult.url}</a>
+                  </div>
+                ) : (
+                  <span className="text-gray-400">暂无数据</span>
+                )} */}
+                <div className="absolute top-0 left-0 w-full">
+                  <ScrollPage pages={results} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
                 </div>
-                <div className="absolute bottom-0 left-0 flex w-full justify-start">
-                  <ScrollPage />
-                </div>
-                <Button variant="outline" size="icon" className="absolute bottom-8 right-4">
-                  <DownloadIcon className="w-4 h-4 hover:text-primary hover:scale-110" />
-                </Button>
                 <TabsContent value="screenshot" className="mt-0 h-full w-full overflow-y-scroll">
                   <div className="flex min-h-full w-full items-center justify-center bg-gray-100">
-                    {/* 截图内容 */}
-                    <span className="text-gray-400 h-[1000px] p-10">截图内容</span>
+                    {currentResult ? (
+                      <Image src={currentResult.screenshot} alt={`Screenshot ${selectedIndex + 1}`} width={1000} height={1000} style={{ width: "100%", height: "auto" }} />
+                    ) : (
+                      <span className="text-gray-400">暂无数据</span>
+                    )}
                   </div>
                 </TabsContent>
                 <TabsContent value="html" className="mt-0 h-full w-full overflow-y-scroll">
                   <div className="flex min-h-full w-full items-center justify-center bg-gray-100">
-                    {/* HTML 内容 */}
-                    <span className="text-gray-400">HTML 内容</span>
+                    {currentResult ? (
+                      <div className="w-full overflow-hidden">
+                        <div className="text-left text-xs w-full">{currentResult.html}</div>
+                      </div>
+                    ) : (
+                      <span className="text-gray-400">暂无数据</span>
+                    )}
                   </div>
                 </TabsContent>
                 <TabsContent value="md" className="mt-0 h-full w-full overflow-y-scroll">
                   <div className="flex min-h-full w-full items-center justify-center bg-gray-100">
-                    {/* MD 内容 */}
-                    <span className="text-gray-400">MD 内容</span>
+                    {currentResult ? (
+                      <div>{currentResult.markdown}</div>
+                    ) : (
+                      <span className="text-gray-400">暂无数据</span>
+                    )}
                   </div>
                 </TabsContent>
               </div>
@@ -106,23 +112,47 @@ const TaskPreview = ({ className }: TaskPreviewProps) => {
                   <TabsTrigger value="json">JSON模式</TabsTrigger>
                 </TabsList>
               </div>
-              <TabsContent value="card">
-                <div className="flex h-[380px] w-full items-center justify-center bg-gray-100">
-                  {/* 卡片内容 */}
-                  <span className="text-gray-400">卡片数据</span>
+              <TabsContent value="card" className="w-full overflow-y-hidden h-[380px] p-2 bg-gray-100">
+                <div className=" w-full h-full overflow-scroll items-center flex flex-wrap justify-center">
+                  {currentResult ? (
+                    currentResult.data.map((item: any, idx: number) => (
+                      <div key={idx} className="p-4 bg-white shadow rounded mb-4 w-full">
+                        <h3 className="text-lg font-bold mb-2">数据 {idx + 1}</h3>
+                        <div className="space-y-2">
+                          {Object.entries(item).map(([key, value]) => (
+                            <div key={key} className="flex flex-col">
+                              <span className="font-semibold text-gray-700">{key}:</span>
+                              <span className="text-gray-600">{String(value)}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <span className="text-gray-400">暂无数据</span>
+                  )}
                 </div>
               </TabsContent>
               <TabsContent value="json">
-                <div className="flex h-[380px] w-full items-center justify-center bg-gray-100">
-                  {/* JSON 内容 */}
-                  <span className="text-gray-400">JSON数据</span>
+                <div className="h-full w-full bg-gray-100 overflow-auto">
+                  {currentResult ? (
+                    <Textarea
+                      rows={18}
+                      className="w-full h-full p-2"
+                      value={JSON.stringify(currentResult.data, null, 2)}
+                      readOnly
+                    />
+                  ) : (
+                    <span className="text-gray-400">暂无数据</span>
+                  )}
                 </div>
               </TabsContent>
             </Tabs>
           </CardContent>
         </Card>
+
       </div>
-    </div >
+    </div>
   );
 };
 
