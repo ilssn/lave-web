@@ -24,7 +24,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useClientTranslation } from "@/hooks/global";
 import DynamicForm from "./dynamic-form";
 
-const TaskConfig = () => {
+const TaskConfig = ({ taskData, onTaskDataChange, onTaskResult }: any) => {
   const [showAdvancedConfig, setShowAdvancedConfig] = React.useState(false);
   const { t } = useClientTranslation();
 
@@ -41,24 +41,24 @@ const TaskConfig = () => {
         <CardContent className="max-h-[calc(100vh-24.5rem)] space-y-4 overflow-y-auto">
           <div className="w-full">
             <Label htmlFor="start-url">起始链接</Label>
-            <Input id="start-url" placeholder="起始链接" className="w-full" />
+            <Input id="start-url" placeholder="起始链接" className="w-full" value={taskData.startUrl} onChange={(e) => onTaskDataChange("startUrl", e.target.value)} />
           </div>
 
           <div className="w-full">
             <Label htmlFor="task-description">任务描述</Label>
-            <Textarea id="task-description" rows={4} placeholder="任务描述" className="w-full" />
+            <Textarea id="task-description" rows={4} placeholder="任务描述" className="w-full" value={taskData.taskDescription} onChange={(e) => onTaskDataChange("taskDescription", e.target.value)} />
           </div>
           <div className="w-full">
             <Label htmlFor="max-depth">最大爬取深度</Label>
-            <Input type="number" defaultValue={1} min={1} id="max-depth" placeholder="最大爬取深度" className="w-full" />
+            <Input type="number" min={1} id="max-depth" placeholder="最大爬取深度" className="w-full" value={taskData.maxDepth} onChange={(e) => onTaskDataChange("maxDepth", Number(e.target.value))} />
           </div>
           <div className="w-full">
             <Label htmlFor="max-links">最大链接数量</Label>
-            <Input type="number" defaultValue={1} min={1} id="max-links" placeholder="最大链接数量" className="w-full" />
+            <Input type="number" min={1} id="max-links" placeholder="最大链接数量" className="w-full" value={taskData.maxLinks} onChange={(e) => onTaskDataChange("maxLinks", Number(e.target.value))} />
           </div>
         </CardContent>
         <CardFooter className="flex justify-between">
-          <Button className="w-full">开始任务</Button>
+          <Button className="w-full" onClick={() => onTaskResult(taskData)}>开始任务</Button>
         </CardFooter>
       </Card>
 
@@ -79,7 +79,7 @@ const TaskConfig = () => {
           </CardHeader>
           <CollapsibleContent>
             <CardContent className="max-h-[calc(100vh-24.5rem)] overflow-y-auto">
-              <DynamicForm />
+              <DynamicForm taskData={taskData} onTaskDataChange={onTaskDataChange} />
             </CardContent>
           </CollapsibleContent>
         </Collapsible>

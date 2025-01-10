@@ -35,7 +35,7 @@ export function ScrollPage() {
                 className="w-full h-auto object-cover"
                 width={140}
                 height={80}
-                style={{ objectFit: "cover", width: "100%" }}
+                style={{ objectFit: "cover", width: "auto", height: "auto" }}
               />
               <figcaption className="p-2 absolute overflow-hidden inset-0 flex items-center bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity text-white text-xs truncate">
                 Photo by{" "}

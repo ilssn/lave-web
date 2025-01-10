@@ -5,42 +5,56 @@ import { MagicWandIcon } from "@radix-ui/react-icons";
 import { MinusCircleIcon, PlusIcon, Trash2Icon } from "lucide-react";
 import * as React from "react";
 
-const DynamicForm = () => {
-  const [formData, setFormData] = React.useState<{ key: string; type: string; description: string }[]>([]);
+const convertToSchemaObject = (formData: { key: string; type: string; description: string }[]) => {
+  return Object.fromEntries(formData.map(field => [field.key, { type: field.type, description: field.description }]));
+};
+
+const DynamicForm = ({ taskData, onTaskDataChange }: any) => {
+
+  const schemaArray = Object.entries(taskData.schema).map(([key, value]) => ({
+    key,
+    type: typeof value === 'object' && value !== null && 'type' in value ? String(value.type) : '',
+    description: typeof value === 'object' && value !== null && 'description' in value ? String(value.description) : ''
+  }));
 
   const handleKeyChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
-    const newFormData = [...formData];
+    const newFormData = [...schemaArray];
     newFormData[index].key = e.target.value;
-    setFormData(newFormData);
+    onTaskDataChange("schema", convertToSchemaObject(newFormData));
   };
 
   const handleTypeChange = (e: string, index: number) => {
-    const newFormData = [...formData];
+    const newFormData = [...schemaArray];
     newFormData[index].type = e;
-    setFormData(newFormData);
+    if (newFormData[index].key === 'maxDepth' || newFormData[index].key === 'maxLinks') {
+      newFormData[index].type = 'number';
+    }
+    onTaskDataChange("schema", convertToSchemaObject(newFormData));
   };
 
   const handleDescriptionChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
-    const newFormData = [...formData];
+    const newFormData = [...schemaArray];
     newFormData[index].description = e.target.value;
-    setFormData(newFormData);
+    onTaskDataChange("schema", convertToSchemaObject(newFormData));
   };
 
   const handleAddField = () => {
-    setFormData([...formData, { key: "", type: "string", description: "" }]);
+    const uniqueKey = `key${schemaArray.length + 1}`;
+    const newFormData = [...schemaArray, { key: uniqueKey, type: "string", description: "" }];
+    onTaskDataChange("schema", convertToSchemaObject(newFormData));
   };
 
   const handleRemoveField = (index: number) => {
-    const newFormData = formData.filter((_, i) => i !== index);
-    setFormData(newFormData);
+    const newFormData = schemaArray.filter((_: any, i: number) => i !== index);
+    onTaskDataChange("schema", convertToSchemaObject(newFormData));
   };
 
   const handleResetForm = () => {
-    setFormData([]);
+    onTaskDataChange("schema", {});
   };
 
   React.useEffect(() => {
-    const formattedData = formData.reduce<Record<string, { type: string; description: string }>>((acc, field) => {
+    const formattedData = schemaArray.reduce((acc: Record<string, { type: string; description: string }>, field: { key: string; type: string; description: string }) => {
       acc[field.key] = {
         type: field.type,
         description: field.description,
@@ -48,11 +62,11 @@ const DynamicForm = () => {
       return acc;
     }, {});
     console.log(formattedData);
-  }, [formData]);
+  }, [taskData]);
 
   return (
     <div className="space-y-4">
-      {formData.map((field, index) => (
+      {schemaArray.map((field: { key: string; type: string; description: string }, index: number) => (
         <div key={index} className="flex items-center space-x-1 space-y-1">
           <Input
             value={field.key}
