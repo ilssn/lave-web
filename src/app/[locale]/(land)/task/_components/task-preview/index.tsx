@@ -13,7 +13,9 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs";
 
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { DownloadIcon } from "lucide-react";
 import { ScrollPage } from "./scroll-page";
 
 type TaskPreviewProps = {
@@ -46,7 +48,6 @@ const TaskPreview = ({ className }: TaskPreviewProps) => {
           </CardHeader>
           <CardContent className="max-h-[calc(100vh-24.5rem)] justify-end overflow-y-auto">
             <Tabs defaultValue="screenshot">
-              {/* <div className="flex w-full justify-end"> */}
               <TabsList className="absolute right-6 top-8 flex justify-start">
                 <TabsTrigger value="screenshot">截图</TabsTrigger>
                 <TabsTrigger value="html">HTML</TabsTrigger>
@@ -54,13 +55,22 @@ const TaskPreview = ({ className }: TaskPreviewProps) => {
               </TabsList>
               {/* </div> */}
               <div className="relative mt-2 h-[404px] w-full">
-                <div className="absolute bottom-0 left-0 flex w-full justify-start border">
+                <div className=" absolute top-0 left-0 flex w-full bg-black bg-opacity-40 px-2 py-1 hover:bg-opacity-60 transition-all duration-300 text-xs justify-between text-white">
+                  <p>测试页面</p>
+                  <a href="https://example.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary transition-all duration-300">
+                    https://example.com
+                  </a>
+                </div>
+                <div className="absolute bottom-0 left-0 flex w-full justify-start">
                   <ScrollPage />
                 </div>
+                <Button variant="outline" size="icon" className="absolute bottom-8 right-4">
+                  <DownloadIcon className="w-4 h-4 hover:text-primary" />
+                </Button>
                 <TabsContent value="screenshot" className="mt-0 h-full w-full overflow-y-scroll">
                   <div className="flex min-h-full w-full items-center justify-center bg-gray-100">
                     {/* 截图内容 */}
-                    <span className="text-gray-400">截图内容</span>
+                    <span className="text-gray-400 h-[1000px] p-10">截图内容</span>
                   </div>
                 </TabsContent>
                 <TabsContent value="html" className="mt-0 h-full w-full overflow-y-scroll">
