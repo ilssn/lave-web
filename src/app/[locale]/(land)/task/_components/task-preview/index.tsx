@@ -14,12 +14,13 @@ import {
 } from "@/components/ui/tabs";
 
 import { cn } from "@/lib/utils";
+import { ScrollPage } from "./scroll-page";
 
-type TaskConsumerProps = {
+type TaskPreviewProps = {
   className?: string;
 };
 
-const TaskConsumer = ({ className }: TaskConsumerProps) => {
+const TaskPreview = ({ className }: TaskPreviewProps) => {
   return (
     <div className={cn("overflow-y-scroll scroll-smooth", className)}>
       <div className="flex w-full flex-col gap-4">
@@ -45,31 +46,36 @@ const TaskConsumer = ({ className }: TaskConsumerProps) => {
           </CardHeader>
           <CardContent className="max-h-[calc(100vh-24.5rem)] justify-end overflow-y-auto">
             <Tabs defaultValue="screenshot">
-              <div className="flex w-full justify-end">
-                <TabsList className="absolute top-8 flex justify-start">
-                  <TabsTrigger value="screenshot">截图</TabsTrigger>
-                  <TabsTrigger value="html">HTML</TabsTrigger>
-                  <TabsTrigger value="md">MD</TabsTrigger>
-                </TabsList>
+              {/* <div className="flex w-full justify-end"> */}
+              <TabsList className="absolute right-6 top-8 flex justify-start">
+                <TabsTrigger value="screenshot">截图</TabsTrigger>
+                <TabsTrigger value="html">HTML</TabsTrigger>
+                <TabsTrigger value="md">MD</TabsTrigger>
+              </TabsList>
+              {/* </div> */}
+              <div className="relative mt-2 h-[404px] w-full">
+                <div className="absolute bottom-0 left-0 flex w-full justify-start border">
+                  <ScrollPage />
+                </div>
+                <TabsContent value="screenshot" className="mt-0 h-full w-full overflow-y-scroll">
+                  <div className="flex min-h-full w-full items-center justify-center bg-gray-100">
+                    {/* 截图内容 */}
+                    <span className="text-gray-400">截图内容</span>
+                  </div>
+                </TabsContent>
+                <TabsContent value="html" className="mt-0 h-full w-full overflow-y-scroll">
+                  <div className="flex min-h-full w-full items-center justify-center bg-gray-100">
+                    {/* HTML 内容 */}
+                    <span className="text-gray-400">HTML 内容</span>
+                  </div>
+                </TabsContent>
+                <TabsContent value="md" className="mt-0 h-full w-full overflow-y-scroll">
+                  <div className="flex min-h-full w-full items-center justify-center bg-gray-100">
+                    {/* MD 内容 */}
+                    <span className="text-gray-400">MD 内容</span>
+                  </div>
+                </TabsContent>
               </div>
-              <TabsContent value="screenshot" className="h-[404px] overflow-y-scroll">
-                <div className="flex min-h-full w-full items-center justify-center bg-gray-100">
-                  {/* 截图内容 */}
-                  <span className="text-gray-400">截图内容</span>
-                </div>
-              </TabsContent>
-              <TabsContent value="html" className="h-[404px] overflow-y-scroll">
-                <div className="flex min-h-full w-full items-center justify-center bg-gray-100">
-                  {/* HTML 内容 */}
-                  <span className="text-gray-400">HTML 内容</span>
-                </div>
-              </TabsContent>
-              <TabsContent value="md" className="h-[404px] overflow-y-scroll">
-                <div className="flex min-h-full w-full items-center justify-center bg-gray-100">
-                  {/* MD 内容 */}
-                  <span className="text-gray-400">MD 内容</span>
-                </div>
-              </TabsContent>
             </Tabs>
           </CardContent>
         </Card>
@@ -110,4 +116,4 @@ const TaskConsumer = ({ className }: TaskConsumerProps) => {
   );
 };
 
-export default TaskConsumer;
+export default TaskPreview;
