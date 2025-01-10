@@ -54,40 +54,38 @@ const DynamicForm = () => {
     <div className="space-y-4">
       {formData.map((field, index) => (
         <div key={index} className="flex items-center space-x-1 space-y-1">
-          <div className="flex w-full items-center space-x-1">
-            <Input
-              value={field.key}
-              onChange={(e) => handleKeyChange(e, index)}
-              placeholder="字段名称"
-              className="w-3/12"
-            />
-            <div className="w-3/12">
-              <Select
-                value={field.type}
-                onValueChange={(e) => handleTypeChange(e, index)}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="选择类型" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="string">string</SelectItem>
-                  <SelectItem value="number">number</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <Input
-              value={field.description}
-              onChange={(e) => handleDescriptionChange(e, index)}
-              placeholder="字段描述"
-              className="w-6/12"
-            />
-            <div
-              className="ml-2 cursor-pointer hover:scale-110 hover:text-red-600"
-              onClick={() => handleRemoveField(index)}
-              aria-label="删除字段"
+          <Input
+            value={field.key}
+            onChange={(e) => handleKeyChange(e, index)}
+            placeholder="字段名称"
+            className="w-3/12"
+          />
+          <div className="w-3/12">
+            <Select
+              value={field.type}
+              onValueChange={(e) => handleTypeChange(e, index)}
             >
-              <MinusCircleIcon className="h-4 w-4" />
-            </div>
+              <SelectTrigger>
+                <SelectValue placeholder="选择类型" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="string">string</SelectItem>
+                <SelectItem value="number">number</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <Input
+            value={field.description}
+            onChange={(e) => handleDescriptionChange(e, index)}
+            placeholder="字段描述"
+            className="w-6/12"
+          />
+          <div
+            className="ml-2 cursor-pointer hover:scale-110 hover:text-red-600"
+            onClick={() => handleRemoveField(index)}
+            aria-label="删除字段"
+          >
+            <MinusCircleIcon className="h-4 w-4" />
           </div>
         </div>
       ))}
