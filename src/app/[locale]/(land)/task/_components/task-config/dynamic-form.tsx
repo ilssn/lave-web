@@ -48,14 +48,14 @@ const DynamicForm = () => {
   return (
     <div className="space-y-4">
       {formData.map((field, index) => (
-        <div key={index} className="flex items-center space-x-4 space-y-1">
+        <div key={index} className="flex items-center space-x-1 space-y-1">
           <Input
             value={field.key}
             onChange={(e) => handleKeyChange(e, index)}
-            placeholder="名称"
-            className="w-1/6"
+            placeholder="字段名称"
+            className="w-3/12"
           />
-          <div className="w-2/6">
+          <div className="w-3/12">
             <Select
               value={field.type}
               onValueChange={(e) => handleTypeChange(e, index)}
@@ -72,8 +72,8 @@ const DynamicForm = () => {
           <Input
             value={field.description}
             onChange={(e) => handleDescriptionChange(e, index)}
-            placeholder="描述"
-            className="w-3/6"
+            placeholder="字段描述"
+            className="w-6/12"
           />
           <Button variant="ghost" size="sm" className="text-red-500 hover:text-red-600" onClick={() => handleRemoveField(index)}>
             <Trash2Icon className="h-4 w-4" />
