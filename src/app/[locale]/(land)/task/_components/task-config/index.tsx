@@ -24,7 +24,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useClientTranslation } from "@/hooks/global";
 import DynamicForm from "./dynamic-form";
 
-const TaskConfig = ({ taskData, onTaskDataChange, onTaskResult, loading }: any) => {
+const TaskConfig = ({ taskData, onTaskDataChange, onTaskResult, taskResult, loading }: any) => {
   const [showAdvancedConfig, setShowAdvancedConfig] = React.useState(false);
   const { t } = useClientTranslation();
 
@@ -63,7 +63,7 @@ const TaskConfig = ({ taskData, onTaskDataChange, onTaskResult, loading }: any) 
             disabled={loading}
             onClick={() => onTaskResult(taskData)}
           >
-            {loading ? "任务进行中..." : "开始任务"}
+            {loading ? `任务进行中... ${taskResult?.length || 0}/${taskData.maxLinks}` : "开始任务"}
           </Button>
         </CardFooter>
       </Card>

@@ -18,7 +18,7 @@ export function ScrollPage({ pages, selectedIndex, setSelectedIndex }: { pages: 
           hover:opacity-100 hover:scale-105 transition-all duration-300 border-2 opacity-20 
           ${selectedIndex === index ? 'border-primary opacity-100 scale-105' : 'border-transparent opacity-50'}
           `}>
-            <div className="overflow-hidden h-full" onClick={() => setSelectedIndex(index)}>
+            <div className="overflow-hidden h-full bg-white" onClick={() => setSelectedIndex(index)}>
               <Image
                 src={artwork.screenshot}
                 alt={`Photo by ${artwork.url}`}

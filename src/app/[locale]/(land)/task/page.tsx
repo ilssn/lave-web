@@ -151,6 +151,7 @@ const TaskPage = () => {
             taskData={taskData}
             onTaskDataChange={handleTaskDataChange}
             onTaskResult={handleTaskResult}
+            taskResult={taskResult}
             loading={loading}
           />
         </div>
