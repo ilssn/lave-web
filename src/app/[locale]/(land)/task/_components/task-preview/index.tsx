@@ -65,7 +65,7 @@ const TaskPreview = ({ className }: TaskPreviewProps) => {
                   <ScrollPage />
                 </div>
                 <Button variant="outline" size="icon" className="absolute bottom-8 right-4">
-                  <DownloadIcon className="w-4 h-4 hover:text-primary" />
+                  <DownloadIcon className="w-4 h-4 hover:text-primary hover:scale-110" />
                 </Button>
                 <TabsContent value="screenshot" className="mt-0 h-full w-full overflow-y-scroll">
                   <div className="flex min-h-full w-full items-center justify-center bg-gray-100">

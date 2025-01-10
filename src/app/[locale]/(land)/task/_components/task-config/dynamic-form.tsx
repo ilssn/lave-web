@@ -91,14 +91,14 @@ const DynamicForm = () => {
       ))}
 
       <Button variant="ghost" onClick={handleAddField} className="w-full border">
-        <PlusIcon className="h-4 w-4" />
+        <PlusIcon className="h-4 w-4 hover:text-primary hover:scale-110" />
       </Button>
       <div className="flex w-full justify-between">
         <Button variant="outline" onClick={handleResetForm}>
-          <Trash2Icon className="h-4 w-4 text-red-600" />
+          <Trash2Icon className="h-4 w-4 hover:text-red-600 hover:scale-110" />
         </Button>
         <Button variant="outline" onClick={handleAddField}>
-          <MagicWandIcon className="h-4 w-4 text-primary" />
+          <MagicWandIcon className="h-4 w-4 hover:text-primary hover:scale-110" />
         </Button>
       </div>
     </div>
