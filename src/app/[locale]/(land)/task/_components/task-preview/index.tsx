@@ -51,7 +51,7 @@ const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
                 <TabsTrigger value="html">HTML</TabsTrigger>
                 <TabsTrigger value="md">MD</TabsTrigger>
               </TabsList>
-              <div className="relative mt-2 h-[404px] w-full pt-10 p-1 bg-gray-100">
+              <div className="relative mt-2 h-[404px] w-full pt-10 p-1 bg-gray-100 rounded-t-md">
                 {/* {currentResult ? (
                   <div className="absolute top-0 left-0 w-full p-4 flex justify-between bg-black bg-opacity-50">
                     <p className="text-lg font-bold">{currentResult.metadata.title}</p>
