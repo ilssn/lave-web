@@ -19,10 +19,19 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { Label } from "@/components/ui/label";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { useClientTranslation } from "@/hooks/global";
+import BrowserForm from "./browser-from";
 import DynamicForm from "./dynamic-form";
 import LinkTabs from "./link-tabs";
+import ModelForm from "./model-form";
+import ProxyForm from "./proxy-form";
 
 const TaskConfig = ({ taskData, onTaskDataChange, onTaskResult, taskResult, loading }: any) => {
   const [showAdvancedConfig, setShowAdvancedConfig] = React.useState(true);
@@ -57,14 +66,7 @@ const TaskConfig = ({ taskData, onTaskDataChange, onTaskResult, taskResult, load
               }}
             />
           </div>
-          {/* <div className="w-full">
-            <Label htmlFor="max-depth">最大爬取深度</Label>
-            <Input type="number" min={1} id="max-depth" placeholder="最大爬取深度" className="w-full" value={taskData.maxDepth} onChange={(e) => onTaskDataChange("maxDepth", Number(e.target.value))} />
-          </div>
-          <div className="w-full">
-            <Label htmlFor="max-links">最大链接数量</Label>
-            <Input type="number" min={1} id="max-links" placeholder="最大链接数量" className="w-full" value={taskData.maxLinks} onChange={(e) => onTaskDataChange("maxLinks", Number(e.target.value))} />
-          </div> */}
+
         </CardContent>
         <CardFooter className="flex justify-between space-x-4">
           <Button variant="outline" className="w-full">历史记录</Button>
@@ -95,7 +97,26 @@ const TaskConfig = ({ taskData, onTaskDataChange, onTaskResult, taskResult, load
           </CardHeader>
           <CollapsibleContent>
             <CardContent className="max-h-[calc(100vh-24.5rem)] overflow-y-auto">
-              <DynamicForm taskData={taskData} onTaskDataChange={onTaskDataChange} />
+              <Tabs defaultValue="data-config" className="w-[400px]">
+                <TabsList className="grid w-full grid-cols-4">
+                  <TabsTrigger value="data-config">数据设置</TabsTrigger>
+                  <TabsTrigger value="model-config">模式设置</TabsTrigger>
+                  <TabsTrigger value="proxy-config">代理设置</TabsTrigger>
+                  <TabsTrigger value="browser-config">浏览器设置</TabsTrigger>
+                </TabsList>
+                <TabsContent value="data-config">
+                  <DynamicForm taskData={taskData} onTaskDataChange={onTaskDataChange} />
+                </TabsContent>
+                <TabsContent value="model-config">
+                  <ModelForm taskData={taskData} onTaskDataChange={onTaskDataChange} />
+                </TabsContent>
+                <TabsContent value="proxy-config">
+                  <ProxyForm taskData={taskData} onTaskDataChange={onTaskDataChange} />
+                </TabsContent>
+                <TabsContent value="browser-config">
+                  <BrowserForm taskData={taskData} onTaskDataChange={onTaskDataChange} />
+                </TabsContent>
+              </Tabs>
             </CardContent>
           </CollapsibleContent>
         </Collapsible>

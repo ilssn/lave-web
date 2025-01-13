@@ -33,7 +33,7 @@ const TaskPage = () => {
   const { toast } = useToast();
   // const { t } = await serverTranslation(locale);
   const [taskData, setTaskData] = useState<any>({
-    startUrls: ["https://news.302.ai", "https://news.302.ai"],
+    startUrls: ["https://news.302.ai"],
     taskDescription: "AI大模型及详情介绍",
     maxDepth: 1,
     maxLinks: 1,
