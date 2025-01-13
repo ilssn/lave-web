@@ -1,0 +1,42 @@
+# .cursorrule 文件
+
+# 项目技术栈
+技术栈:
+  - 前端: React, Next.js
+  - 数据库: Mysql Prisma
+  - 样式: Tailwind CSS
+  - 组件库：shadcn/ui
+  - 代码高亮: rehype-pretty-code, shiki
+
+# 代码规范
+代码规范:
+  - 使用 ESLint 和 Prettier 进行代码格式化和静态检查
+  - 使用 TypeScript 进行类型检查
+  - 所有组件必须是函数式组件
+  - 使用 React Hooks 进行状态管理
+
+# 最佳实践
+最佳实践:
+  - 组件应保持单一职责，避免过于复杂
+  - 使用自定义 Hooks 提取可重用的逻辑
+  - 优先使用 Tailwind CSS
+  - 确保所有 API 请求都在 `useEffect` 或自定义 Hook 中进行
+  - 使用 `next/image` 组件优化图片加载
+
+# 功能保护
+功能保护:
+  - 不得随意更改现有功能的逻辑
+  - 所有功能更改必须经过代码审查
+  - 任何更改都必须附带单元测试
+  - 重要功能的更改需更新相关文档
+
+# 代码提交
+代码提交:
+  - 提交信息应简洁明了，遵循 "type(scope): subject" 格式
+  - 常见提交类型: feat, fix, docs, style, refactor, test, chore
+  - 每次提交前需通过所有测试
+
+# 其他
+其他:
+  - 所有新功能需附带相应的文档更新
+  - 定期进行代码审查，确保代码质量 
