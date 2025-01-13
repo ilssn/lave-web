@@ -13,11 +13,11 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
-import { ScrollPage } from "./scroll-page";
 
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { PageTab } from "./page-tab";
 
 type TaskPreviewProps = {
   className?: string;
@@ -30,7 +30,7 @@ const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
 
   useEffect(() => {
     setCurrentResult(results[selectedIndex]);
-  }, [selectedIndex, results]);
+  }, [selectedIndex, results.length]);
 
   return (
     <div className={cn("overflow-y-scroll scroll-smooth", className)}>
@@ -50,7 +50,7 @@ const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
                 <TabsTrigger value="html">HTML</TabsTrigger>
                 <TabsTrigger value="md">MD</TabsTrigger>
               </TabsList>
-              <div className="relative mt-2 h-[404px] w-full pt-8">
+              <div className="relative mt-2 h-[404px] w-full pt-10">
                 {/* {currentResult ? (
                   <div className="absolute top-0 left-0 w-full p-4 flex justify-between bg-black bg-opacity-50">
                     <p className="text-lg font-bold">{currentResult.metadata.title}</p>
@@ -60,10 +60,10 @@ const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
                   <span className="text-gray-400">暂无数据</span>
                 )} */}
                 <div className="absolute top-0 left-0 w-full">
-                  <ScrollPage pages={results} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
+                  <PageTab pages={results} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
                 </div>
                 <TabsContent value="screenshot" className="mt-0 h-full w-full overflow-y-scroll">
-                  <div className="flex min-h-full w-full items-center justify-center bg-gray-100">
+                  <div className="flex min-h-full w-full items-center justify-center bg-gray-100 p-1">
                     {currentResult ? (
                       <Image src={currentResult.screenshot} alt={`Screenshot ${selectedIndex + 1}`} width={1000} height={1000} style={{ width: "100%", height: "auto" }} />
                     ) : (
@@ -115,7 +115,7 @@ const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
               <TabsContent value="card" className="w-full overflow-y-hidden h-[380px] p-2 bg-gray-100">
                 <div className=" w-full h-full overflow-scroll items-center flex flex-wrap justify-center">
                   {currentResult ? (
-                    currentResult.data.map((item: any, idx: number) => (
+                    currentResult.data?.map((item: any, idx: number) => (
                       <div key={idx} className="p-4 bg-white shadow rounded mb-4 w-full">
                         <h3 className="text-lg font-bold mb-2">数据 {idx + 1}</h3>
                         <div className="space-y-2">

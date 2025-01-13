@@ -49,7 +49,16 @@ const TaskPage = () => {
     },
   });
 
-  const [taskResult, setTaskResult] = useState<any>([]);
+  const [taskResult, setTaskResult] = useState<any>([
+    // {
+    //   url: "https://news.302.ai",
+    //   screenshot: "https://file.302.ai/news.302.ai.png",
+    // },
+    // {
+    //   url: "https://news.302.ai",
+    //   screenshot: "https://file.302.ai/news.302.ai.png",
+    // },
+  ]);
   const [loading, setLoading] = useState(false);
 
   const handleTaskDataChange = (key: string, value: any) => {
