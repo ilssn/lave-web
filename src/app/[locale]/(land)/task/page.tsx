@@ -50,14 +50,18 @@ const TaskPage = () => {
   });
 
   const [taskResult, setTaskResult] = useState<any>([
-    // {
-    //   url: "https://news.302.ai",
-    //   screenshot: "https://file.302.ai/news.302.ai.png",
-    // },
-    // {
-    //   url: "https://news.302.ai",
-    //   screenshot: "https://file.302.ai/news.302.ai.png",
-    // },
+    {
+      url: "https://news.302.ai",
+      screenshot: "https://file.302.ai/news.302.ai.png",
+      html: "<h1>Page1 AI大模型及详情介绍</h1> <p>AI大模型及详情介绍12312 123123123123 fdsfsfsdfsfsf 123213123123131</p>",
+      markdown: "## AI大模型及详情介绍 \n ### AI大模型及详情介绍",
+    },
+    {
+      url: "https://news.302.ai/page2",
+      screenshot: "https://file.302.ai/news.302.ai.png",
+      html: "<h1>Page2 AI大模型及详情介绍</h1> <p>AI大模型及详情介绍12312 123123123123 fdsfsfsdfsfsf 123213123123131</p>",
+      markdown: "## AI大模型及详情介绍",
+    },
   ]);
   const [loading, setLoading] = useState(false);
 

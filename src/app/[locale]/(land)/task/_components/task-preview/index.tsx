@@ -17,6 +17,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import CodeBlock from "./code-block";
 import { PageTab } from "./page-tab";
 
 type TaskPreviewProps = {
@@ -50,7 +51,7 @@ const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
                 <TabsTrigger value="html">HTML</TabsTrigger>
                 <TabsTrigger value="md">MD</TabsTrigger>
               </TabsList>
-              <div className="relative mt-2 h-[404px] w-full pt-10">
+              <div className="relative mt-2 h-[404px] w-full pt-10 p-1 bg-gray-100">
                 {/* {currentResult ? (
                   <div className="absolute top-0 left-0 w-full p-4 flex justify-between bg-black bg-opacity-50">
                     <p className="text-lg font-bold">{currentResult.metadata.title}</p>
@@ -63,7 +64,7 @@ const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
                   <PageTab pages={results} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
                 </div>
                 <TabsContent value="screenshot" className="mt-0 h-full w-full overflow-y-scroll">
-                  <div className="flex min-h-full w-full items-center justify-center bg-gray-100 p-1">
+                  <div className="flex min-h-full w-full justify-center bg-gray-100">
                     {currentResult ? (
                       <Image src={currentResult.screenshot} alt={`Screenshot ${selectedIndex + 1}`} width={1000} height={1000} style={{ width: "100%", height: "auto" }} />
                     ) : (
@@ -72,10 +73,10 @@ const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
                   </div>
                 </TabsContent>
                 <TabsContent value="html" className="mt-0 h-full w-full overflow-y-scroll">
-                  <div className="flex min-h-full w-full items-center justify-center bg-gray-100">
+                  <div className="flex min-h-full w-full justify-center bg-gray-100">
                     {currentResult ? (
-                      <div className="w-full overflow-hidden">
-                        <div className="text-left text-xs w-full">{currentResult.html}</div>
+                      <div className="w-full overflow-hidden relative">
+                        <CodeBlock language="html" value={currentResult.html} />
                       </div>
                     ) : (
                       <span className="text-gray-400">暂无数据</span>
@@ -83,9 +84,11 @@ const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
                   </div>
                 </TabsContent>
                 <TabsContent value="md" className="mt-0 h-full w-full overflow-y-scroll">
-                  <div className="flex min-h-full w-full items-center justify-center bg-gray-100">
+                  <div className="flex min-h-full w-full justify-center bg-gray-100">
                     {currentResult ? (
-                      <div>{currentResult.markdown}</div>
+                      <div className="w-full overflow-hidden relative">
+                        <CodeBlock language="markdown" value={currentResult.markdown} />
+                      </div>
                     ) : (
                       <span className="text-gray-400">暂无数据</span>
                     )}
