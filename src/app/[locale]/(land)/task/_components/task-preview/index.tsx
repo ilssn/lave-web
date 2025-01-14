@@ -21,6 +21,7 @@ import { ExpandIcon, ShrinkIcon } from "lucide-react";
 import Image from "next/image";
 import { useEffect } from "react";
 import CodeBlock from "./code-block";
+import MdEditor from "./md-renderer";
 import { PageTab } from "./page-tab";
 
 type TaskPreviewProps = {
@@ -82,7 +83,7 @@ const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
                 </TabsContent>
                 <TabsContent value="md" className="">
                   {currentResult ? (
-                    <CodeBlock code={currentResult.markdown} language="markdown" />
+                    <MdEditor initialContent={currentResult.markdown} />
                   ) : (
                     <p className="text-sm text-gray-400 text-center">暂无数据</p>
                   )}
