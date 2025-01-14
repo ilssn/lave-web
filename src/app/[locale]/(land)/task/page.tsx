@@ -168,7 +168,7 @@ const TaskPage = () => {
             loading={loading}
           />
         </div>
-        <div className="relative flex-1">
+        <div className="relative flex-1 md:w-[calc(100%-500px)]">
           <TaskPreview results={taskResult || []} />
         </div>
       </section>

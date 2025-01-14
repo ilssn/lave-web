@@ -1,19 +1,21 @@
+import beautify from 'js-beautify';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import * as themes from 'react-syntax-highlighter/dist/esm/styles/prism';
 
+const CodeBlock = ({ code, language }: { code: string, language: string }) => {
+  // 根据语言格式化代码
+  const formattedCode = language === 'html' ? beautify.html(code) : code;
 
-
-interface CodeBlockProps {
-  language: string;
-  value: string;
-}
-
-const CodeBlock: React.FC<CodeBlockProps> = ({ language, value }) => (
-  <div style={{ width: '100%', height: '100%', overflowX: 'auto', }} className='absolute top-0 left-0 w-full h-full'>
-    <SyntaxHighlighter language={language} style={docco} wrapLongLines={true} >
-      {value}
+  return (
+    <SyntaxHighlighter
+      language={language}
+      style={themes.vscDarkPlus}
+      showLineNumbers
+      lineNumberStyle={{ minWidth: '2em', textAlign: 'right', marginRight: '1em', opacity: 0.5 }}
+    >
+      {formattedCode}
     </SyntaxHighlighter>
-  </div>
-);
+  );
+};
 
 export default CodeBlock;

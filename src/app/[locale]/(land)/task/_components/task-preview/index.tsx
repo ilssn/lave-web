@@ -72,11 +72,11 @@ const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
                     )}
                   </div>
                 </TabsContent>
-                <TabsContent value="html" className="mt-0 h-full w-full overflow-y-scroll">
+                <TabsContent value="html" className="mt-0 h-full overflow-y-scroll">
                   <div className="flex min-h-full w-full justify-center bg-gray-100">
                     {currentResult ? (
-                      <div className="w-full overflow-hidden relative">
-                        <CodeBlock language="html" value={currentResult.html} />
+                      <div className="overflow-scroll relative">
+                        <CodeBlock code={currentResult.html} language="html" />
                       </div>
                     ) : (
                       <span className="text-gray-400">暂无数据</span>
@@ -87,7 +87,7 @@ const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
                   <div className="flex min-h-full w-full justify-center bg-gray-100">
                     {currentResult ? (
                       <div className="w-full overflow-hidden relative">
-                        <CodeBlock language="markdown" value={currentResult.markdown} />
+                        <CodeBlock code={currentResult.markdown} language="markdown" />
                       </div>
                     ) : (
                       <span className="text-gray-400">暂无数据</span>
