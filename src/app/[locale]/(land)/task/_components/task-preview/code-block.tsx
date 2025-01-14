@@ -1,6 +1,6 @@
 import beautify from 'js-beautify';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import * as themes from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 const CodeBlock = ({ code, language }: { code: string, language: string }) => {
   // 根据语言格式化代码
@@ -9,7 +9,7 @@ const CodeBlock = ({ code, language }: { code: string, language: string }) => {
   return (
     <SyntaxHighlighter
       language={language}
-      style={vscDarkPlus}
+      style={themes.nord}
       showLineNumbers
       codeTagProps={{ style: { fontSize: '14px', margin: '0' } }}
       lineNumberStyle={{ minWidth: '2em', textAlign: 'right', opacity: 0.5 }}
