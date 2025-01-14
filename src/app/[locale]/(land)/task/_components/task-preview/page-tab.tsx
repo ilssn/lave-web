@@ -8,7 +8,7 @@ export interface Artwork {
 
 export function PageTab({ pages, selectedIndex, setSelectedIndex }: { pages: Artwork[], selectedIndex: number, setSelectedIndex: (index: number) => void }) {
   return (
-    <ScrollArea className="h-10 w-full whitespace-nowrap overflow-hidden bg-gray-200 rounded-t-md p-1">
+    <ScrollArea className="h-8 w-full whitespace-nowrap overflow-hidden">
       <div className="flex w-max space-x-1">
         {pages.map((artwork, index) => (
           <div
