@@ -50,7 +50,7 @@ const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
                   <TabsTrigger value="html">HTML</TabsTrigger>
                   <TabsTrigger value="md">MD</TabsTrigger>
                 </TabsList>
-                <Button size={"icon"} variant="ghost" onClick={() => setIsFullScreen(!isFullScreen)} className="text-gray-400 rounded-md">
+                <Button size={"icon"} variant="ghost" onClick={() => setIsFullScreen(!isFullScreen)} className="text-gray-400 bg-gray-100 rounded-md">
                   {isFullScreen ? <ShrinkIcon className="w-4 h-4" /> : <ExpandIcon className="w-4 h-4" />}
                 </Button>
               </div>

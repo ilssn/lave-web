@@ -3,6 +3,10 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 export interface Artwork {
   url: string
   screenshot: string
+  metadata: {
+    title: string
+    description: string
+  }
 }
 
 
@@ -19,10 +23,19 @@ export function PageTab({ pages, selectedIndex, setSelectedIndex }: { pages: Art
             ${selectedIndex === index ? 'border-b-primary bg-white' : 'border-b-transparent bg-gray-100'}
             `}
             onClick={() => setSelectedIndex(index)}
+            title={artwork.metadata?.title || `Page ${index + 1}`}
           >
             <div className="flex items-center justify-center h-full">
-              <span className={`text-sm ${selectedIndex === index ? 'font-bold text-black' : 'text-gray-600'}`}>
-                {`Page ${index + 1}`}
+              <span
+                className={`text-sm ${selectedIndex === index ? 'font-bold text-black' : 'text-gray-600'}`}
+                style={{
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                  maxWidth: '120px',
+                }}
+              >
+                {artwork.metadata?.title || artwork.url}
               </span>
             </div>
           </div>
