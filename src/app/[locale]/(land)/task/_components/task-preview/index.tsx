@@ -21,7 +21,7 @@ import { ExpandIcon, ShrinkIcon } from "lucide-react";
 import Image from "next/image";
 import { useEffect } from "react";
 import CodeBlock from "./code-block";
-import MdEditor from "./md-renderer";
+import MarkdownRenderer from "./md-renderer";
 import { PageTab } from "./page-tab";
 
 type TaskPreviewProps = {
@@ -68,7 +68,7 @@ const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
                     <Image src={currentResult.screenshot}
                       alt={`Screenshot ${selectedIndex + 1}`}
                       width={1000} height={1000}
-                      style={{ width: "100%", height: "auto" }} />
+                      style={{ width: "100%", height: "auto", borderRadius: "0.3rem" }} />
                   ) : (
                     <p className="text-sm text-gray-400 text-center">暂无数据</p>
                   )}
@@ -83,7 +83,7 @@ const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
                 </TabsContent>
                 <TabsContent value="md" className="">
                   {currentResult ? (
-                    <MdEditor initialContent={currentResult.markdown} />
+                    <MarkdownRenderer content={currentResult.markdown} />
                   ) : (
                     <p className="text-sm text-gray-400 text-center">暂无数据</p>
                   )}
