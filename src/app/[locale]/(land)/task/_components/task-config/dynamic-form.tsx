@@ -82,6 +82,7 @@ const DynamicForm = ({ taskData, onTaskDataChange }: any) => {
               <SelectContent>
                 <SelectItem value="string">string</SelectItem>
                 <SelectItem value="number">number</SelectItem>
+                <SelectItem value="array">array</SelectItem>
               </SelectContent>
             </Select>
           </div>

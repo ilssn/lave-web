@@ -34,8 +34,8 @@ const TaskPage = () => {
   // const { t } = await serverTranslation(locale);
   const [taskData, setTaskData] = useState<any>({
     // task config
-    startUrls: [],
-    taskDescription: "",
+    startUrls: ["https://news.302.ai"],
+    taskDescription: "AI大模型及详情介绍",
     // model config
     matchType: "auto", // auto manual
     searchModel: "default", // default, deep, agent 
@@ -43,14 +43,21 @@ const TaskPage = () => {
     maxLinks: 1,
     // data config
     schema: {
-      // model: {
-      //   type: "string",
-      //   description: "AI大模型名称",
-      // },
-      // description: {
-      //   type: "string",
-      //   description: "AI大模型功能描述",
-      // },
+      topic: {
+        type: "string",
+        description: "文章主题",
+      },
+      detail: {
+        type: "string",
+        description: "文章详情, 包含标题、作者、发布时间、正文概要",
+      },
+      keywords: {
+        type: "array",
+        description: "文章关键词",
+        items: {
+          type: "string",
+        },
+      },
     },
     // proxy config
     proxyUrl: "",
@@ -94,7 +101,7 @@ const TaskPage = () => {
   };
 
   const handleTaskResult = (taskData: any) => {
-    // console.log(taskData);
+    console.log(taskData);
     // return
     const runData = {
       urls: taskData.startUrls,
