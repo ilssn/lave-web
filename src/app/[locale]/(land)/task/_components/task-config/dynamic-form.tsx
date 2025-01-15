@@ -26,9 +26,6 @@ const DynamicForm = ({ taskData, onTaskDataChange }: any) => {
   const handleTypeChange = (e: string, index: number) => {
     const newFormData = [...schemaArray];
     newFormData[index].type = e;
-    if (newFormData[index].key === 'maxDepth' || newFormData[index].key === 'maxLinks') {
-      newFormData[index].type = 'number';
-    }
     onTaskDataChange("schema", convertToSchemaObject(newFormData));
   };
 

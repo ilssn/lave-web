@@ -33,10 +33,15 @@ const TaskPage = () => {
   const { toast } = useToast();
   // const { t } = await serverTranslation(locale);
   const [taskData, setTaskData] = useState<any>({
+    // task config
     startUrls: ["https://news.302.ai"],
     taskDescription: "AI大模型及详情介绍",
+    // model config
+    matchType: "auto", // auto manual
+    searchModel: "default", // default, deep, agent 
     maxDepth: 1,
     maxLinks: 1,
+    // data config
     schema: {
       model: {
         type: "string",
@@ -47,6 +52,22 @@ const TaskPage = () => {
         description: "AI大模型功能描述",
       },
     },
+    // proxy config
+    proxyUrl: "",
+    proxyUsername: "",
+    proxyPassword: "",
+    // browser config
+    headless: "true",
+    browserType: "chromium",
+    viewportWidth: 1920,
+    viewportHeight: 1080,
+    userAgent: "",
+    headers: "",
+    cookies: "",
+    lightMode: "false",
+    textMode: "false",
+    jsEnabled: "false",
+    cacheEnabled: "false",
   });
 
   const [taskResult, setTaskResult] = useState<any>([
@@ -74,17 +95,7 @@ const TaskPage = () => {
 
   const handleTaskResult = (taskData: any) => {
     console.log(taskData);
-    const runData = {
-      urls: taskData.startUrls,
-      target: taskData.taskDescription,
-      recursiveConfig: {
-        maxDepth: taskData.maxDepth,
-        maxUrls: taskData.maxLinks,
-      },
-      schema: taskData.schema,
-    };
-    setTaskResult([]);
-    handleRunTask(runData);
+    return
   };
 
   const handleRunTask = async (data: any) => {

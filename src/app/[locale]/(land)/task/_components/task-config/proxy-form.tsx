@@ -15,6 +15,8 @@ export default function ProxyForm({ taskData, onTaskDataChange }: { taskData: an
       <Label htmlFor="proxy-password">密码</Label>
       <Input id="proxy-password" placeholder="密码" className="w-full" value={taskData.proxyPassword} onChange={(e: React.ChangeEvent<HTMLInputElement>) => onTaskDataChange("proxyPassword", e.target.value)} />
     </div>
-
+    <div className="w-flex-1">
+      <a className="text-primary underline text-sm" href="https://www.proxy302.com/" target="_blank">获取代理</a>
+    </div>
   </div>;
 }
