@@ -19,7 +19,12 @@ const JsonEditor = ({ initialData }: { initialData: any }) => {
           url: item.url,
           title: item.metadata.title,
           description: item.metadata.description,
-          data: item.data,
+          data: item.data.map((item: any) => {
+            const { error, ...rest } = item;
+            return {
+              ...rest,
+            }
+          }),
           // metadata: item.metadata,
         }
       })

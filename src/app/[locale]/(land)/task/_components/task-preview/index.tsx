@@ -154,10 +154,12 @@ const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
                       <h3 className="text-lg font-bold mb-2">数据 {idx + 1}</h3>
                       <div className="space-y-2">
                         {Object.entries(item).map(([key, value]) => (
-                          <div key={key} className="flex flex-col">
-                            <span className="font-semibold text-gray-700">{key}:</span>
-                            <span className="text-gray-600">{String(value)}</span>
-                          </div>
+                          key !== 'error' && (
+                            <div key={key} className="flex flex-col">
+                              <span className="font-semibold text-gray-700">{key}:</span>
+                              <span className="text-gray-600">{String(value)}</span>
+                            </div>
+                          )
                         ))}
                       </div>
                     </div>

@@ -39,8 +39,8 @@ const TaskPage = () => {
     // model config
     matchType: "auto", // auto manual
     searchModel: "default", // default, deep, agent 
-    maxDepth: 1,
-    maxLinks: 1,
+    maxDepth: 2,
+    maxLinks: 20,
     // data config
     schema: {
       topic: {

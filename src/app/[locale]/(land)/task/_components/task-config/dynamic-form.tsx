@@ -109,7 +109,8 @@ const DynamicForm = ({ taskData, onTaskDataChange }: any) => {
         <Button variant="outline" onClick={handleResetForm}>
           <Trash2Icon className="h-4 w-4 hover:text-red-600 hover:scale-110" />
         </Button>
-        <Button variant="outline" onClick={handleAddField}>
+        <Button variant="outline" onClick={handleAddField} className="text-primary hover:text-primary">
+          AI生成
           <MagicWandIcon className="h-4 w-4 hover:text-primary hover:scale-110" />
         </Button>
       </div>
