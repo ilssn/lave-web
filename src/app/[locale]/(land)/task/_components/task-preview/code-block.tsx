@@ -9,7 +9,7 @@ const CodeBlock = ({ code, language }: { code: string, language: string }) => {
   return (
     <SyntaxHighlighter
       language={language}
-      style={themes.nord}
+      style={themes.ghcolors}
       showLineNumbers
       codeTagProps={{ style: { fontSize: '14px', margin: '0' } }}
       lineNumberStyle={{ minWidth: '2em', textAlign: 'right', opacity: 0.5 }}
