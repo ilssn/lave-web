@@ -15,14 +15,14 @@ import {
 import { useState } from 'react';
 
 import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { ExpandIcon, ShrinkIcon } from "lucide-react";
-import Image from "next/image";
 import { useEffect } from "react";
 import CodeBlock from "./code-block";
+import JsonEditor from "./json-editor";
 import MarkdownRenderer from "./md-renderer";
 import { PageTab } from "./page-tab";
+import ScreenshotRenderer from './screenshot-renderer';
 
 type TaskPreviewProps = {
   className?: string;
@@ -65,10 +65,10 @@ const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
               <div className="w-full flex-1 overflow-scroll ">
                 <TabsContent value="screenshot" className="">
                   {currentResult ? (
-                    <Image src={currentResult.screenshot}
+                    <ScreenshotRenderer
+                      src={currentResult.screenshot}
                       alt={`Screenshot ${selectedIndex + 1}`}
-                      width={1000} height={1000}
-                      style={{ width: "100%", height: "auto", borderRadius: "0.3rem" }} />
+                    />
                   ) : (
                     <p className="text-sm text-gray-400 text-center">暂无数据</p>
                   )}
@@ -137,12 +137,7 @@ const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
 
               <TabsContent value="json">
                 {currentResult ? (
-                  <Textarea
-                    rows={18}
-                    className="w-full h-full p-2"
-                    value={JSON.stringify(currentResult.data, null, 2)}
-                    readOnly
-                  />
+                  <JsonEditor initialData={currentResult.data} />
                 ) : (
                   <p className="text-sm text-gray-400 text-center mt-8">暂无数据</p>
                 )}
@@ -159,5 +154,6 @@ const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
     </div>
   );
 };
+
 
 export default TaskPreview;
