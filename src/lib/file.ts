@@ -309,12 +309,30 @@ export default class FileManager {
   };
 
   static saveDataToFile = (data: string, filename: string, type: string) => {
-    const blob = new Blob([data], { type });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = filename;
-    a.click();
-    URL.revokeObjectURL(url);
-  };
+    if (/\.(jpg|jpeg|png|gif)$/.test(filename)) {
+      fetch(data)
+        .then(response => response.blob())
+        .then(blob => {
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = filename;
+          document.body.appendChild(a); // 添加到文档中
+          a.click();
+          document.body.removeChild(a); // 从文档中移除
+          URL.revokeObjectURL(url);
+        })
+        .catch(error => console.error("图片下载错误:", error));
+    } else {
+      const blob = new Blob([data], { type });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a); // 添加到文档中
+      a.click();
+      document.body.removeChild(a); // 从文档中移除
+      URL.revokeObjectURL(url);
+    }
+  }
 }

@@ -15,8 +15,9 @@ import {
 import { useState } from 'react';
 
 import { Button } from "@/components/ui/button";
+import FileManager from '@/lib/file';
 import { cn } from "@/lib/utils";
-import { ExpandIcon, ShrinkIcon } from "lucide-react";
+import { ExpandIcon, SaveIcon, ShrinkIcon } from "lucide-react";
 import { useEffect } from "react";
 import CodeBlock from "./code-block";
 import JsonEditor from "./json-editor";
@@ -27,6 +28,10 @@ import ScreenshotRenderer from './screenshot-renderer';
 type TaskPreviewProps = {
   className?: string;
   results: any[];
+};
+
+const handleDownload = (data: string, filename: string, type: string) => {
+  FileManager.saveDataToFile(data, filename, type);
 };
 
 const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
@@ -60,15 +65,25 @@ const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
             </CardTitle>
           </CardHeader>
           <CardContent className="overflow-hidden w-full flex-1">
-            <div className="w-full h-full flex flex-col bg-gray-200 border-8 border-gray-200 rounded-md">
+            <div className="w-full h-full flex flex-col bg-gray-200 border-8 border-gray-200 rounded-md relative">
               <PageTab pages={results} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
-              <div className="w-full flex-1 overflow-scroll ">
+              <div className="w-full flex-1 overflow-scroll">
                 <TabsContent value="screenshot" className="">
                   {currentResult ? (
-                    <ScreenshotRenderer
-                      src={currentResult.screenshot}
-                      alt={`Screenshot ${selectedIndex + 1}`}
-                    />
+                    <>
+                      <ScreenshotRenderer
+                        src={currentResult.screenshot}
+                        alt={`Screenshot ${selectedIndex + 1}`}
+                      />
+
+                      <Button
+                        size="icon"
+                        variant="ghost"
+                        onClick={() => handleDownload(currentResult.screenshot, 'screenshot.png', 'image/png')}
+                        className="text-gray-400 bg-gray-100 rounded-md absolute bottom-2 right-2">
+                        <SaveIcon className="w-4 h-4 hover:text-primary hover:scale-110" />
+                      </Button>
+                    </>
                   ) : (
                     <p className="text-sm text-gray-400 text-center">暂无数据</p>
                   )}
@@ -76,18 +91,40 @@ const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
 
                 <TabsContent value="html" className="">
                   {currentResult ? (
-                    <CodeBlock code={currentResult.html} language="html" />
+                    <>
+                      <CodeBlock code={currentResult.html} language="html" />
+                      <Button
+                        size="icon"
+                        variant="ghost"
+                        onClick={() => handleDownload(currentResult.html, 'preview.html', 'text/html')}
+                        className="text-gray-400 bg-gray-100 rounded-md absolute bottom-2 right-2">
+                        <SaveIcon className="w-4 h-4 hover:text-primary hover:scale-110" />
+                      </Button>
+                    </>
                   ) : (
                     <p className="text-sm text-gray-400 text-center">暂无数据</p>
                   )}
                 </TabsContent>
                 <TabsContent value="md" className="">
                   {currentResult ? (
-                    <MarkdownRenderer content={currentResult.markdown} />
+                    <>
+                      <MarkdownRenderer content={currentResult.markdown} />
+                      <Button
+                        size="icon"
+                        variant="ghost"
+                        onClick={() => handleDownload(currentResult.markdown, 'preview.md', 'text/markdown')}
+                        className="text-gray-400 bg-gray-100 rounded-md absolute bottom-2 right-2">
+                        <SaveIcon className="w-4 h-4 hover:text-primary hover:scale-110" />
+                      </Button>
+                    </>
                   ) : (
                     <p className="text-sm text-gray-400 text-center">暂无数据</p>
                   )}
                 </TabsContent>
+
+
+
+
               </div>
             </div>
           </CardContent>
@@ -150,6 +187,7 @@ const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
           </CardContent>
         </Card>
       </Tabs>
+
 
     </div>
   );
