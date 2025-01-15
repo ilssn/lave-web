@@ -68,7 +68,7 @@ const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
             <div className="w-full h-full flex flex-col bg-gray-200 border-8 border-gray-200 rounded-md relative">
               <PageTab pages={results} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
               <div className="w-full flex-1 overflow-scroll">
-                <TabsContent value="screenshot" className="">
+                <TabsContent value="screenshot" className="w-full h-full">
                   {currentResult ? (
                     <>
                       <ScreenshotRenderer
@@ -89,7 +89,7 @@ const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
                   )}
                 </TabsContent>
 
-                <TabsContent value="html" className="">
+                <TabsContent value="html" className="w-full h-full">
                   {currentResult ? (
                     <>
                       <CodeBlock code={currentResult.html} language="html" />
@@ -105,7 +105,7 @@ const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
                     <p className="text-sm text-gray-400 text-center">暂无数据</p>
                   )}
                 </TabsContent>
-                <TabsContent value="md" className="">
+                <TabsContent value="md" className="w-full h-full">
                   {currentResult ? (
                     <>
                       <MarkdownRenderer content={currentResult.markdown} />
@@ -121,10 +121,6 @@ const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
                     <p className="text-sm text-gray-400 text-center">暂无数据</p>
                   )}
                 </TabsContent>
-
-
-
-
               </div>
             </div>
           </CardContent>
@@ -151,7 +147,7 @@ const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
           </CardHeader>
           <CardContent className="overflow-hidden w-full flex-1">
             <div className="w-full h-full overflow-scroll bg-gray-200 border-8 border-gray-200 rounded-md">
-              <TabsContent value="card" className="w-full">
+              <TabsContent value="card" className="w-full h-full mt-0">
                 {currentResult ? (
                   currentResult.data?.map((item: any, idx: number) => (
                     <div key={idx} className="p-4 bg-white shadow rounded mb-4 w-full">
@@ -172,7 +168,7 @@ const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
               </TabsContent>
 
 
-              <TabsContent value="json">
+              <TabsContent value="json" className="w-full h-full mt-0">
                 {currentResult ? (
                   <JsonEditor initialData={currentResult.data} />
                 ) : (

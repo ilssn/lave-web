@@ -12,10 +12,11 @@ const JsonEditor = ({ initialData }: { initialData: any }) => {
   };
 
   return (
-    <div className="h-full bg-gray-100 rounded-md relative mx-[1px]">
+    <div className="h-full bg-gray-100 rounded-md relative">
       <Textarea
         rows={18}
-        className="w-full h-full p-2"
+        style={{ height: '100%' }}
+        className="w-full h-full"
         value={jsonData}
         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setJsonData(e.target.value)}
       />
