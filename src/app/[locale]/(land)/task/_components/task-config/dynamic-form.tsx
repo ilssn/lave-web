@@ -58,7 +58,7 @@ const DynamicForm = ({ taskData, onTaskDataChange }: any) => {
       };
       return acc;
     }, {});
-    console.log(formattedData);
+    // console.log(formattedData);
   }, [taskData]);
 
   return (

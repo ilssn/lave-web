@@ -34,8 +34,8 @@ const TaskPage = () => {
   // const { t } = await serverTranslation(locale);
   const [taskData, setTaskData] = useState<any>({
     // task config
-    startUrls: ["https://news.302.ai"],
-    taskDescription: "AI大模型及详情介绍",
+    startUrls: [],
+    taskDescription: "",
     // model config
     matchType: "auto", // auto manual
     searchModel: "default", // default, deep, agent 
@@ -43,14 +43,14 @@ const TaskPage = () => {
     maxLinks: 1,
     // data config
     schema: {
-      model: {
-        type: "string",
-        description: "AI大模型名称",
-      },
-      description: {
-        type: "string",
-        description: "AI大模型功能描述",
-      },
+      // model: {
+      //   type: "string",
+      //   description: "AI大模型名称",
+      // },
+      // description: {
+      //   type: "string",
+      //   description: "AI大模型功能描述",
+      // },
     },
     // proxy config
     proxyUrl: "",
@@ -94,8 +94,38 @@ const TaskPage = () => {
   };
 
   const handleTaskResult = (taskData: any) => {
-    console.log(taskData);
-    return
+    // console.log(taskData);
+    // return
+    const runData = {
+      urls: taskData.startUrls,
+      target: taskData.taskDescription,
+      recursiveConfig: {
+        maxDepth: taskData.searchModel === "deep" ? taskData.maxDepth : 1,
+        maxUrls: taskData.searchModel === "deep" ? taskData.maxLinks : taskData.startUrls.length,
+      },
+      schema: taskData.schema,
+      proxyConfig: {
+        proxyUrl: taskData.proxyUrl,
+        proxyUsername: taskData.proxyUsername,
+        proxyPassword: taskData.proxyPassword,
+      },
+      browserConfig: {
+        headless: taskData.headless === "true",
+        browserType: taskData.browserType,
+        viewportWidth: taskData.viewportWidth,
+        viewportHeight: taskData.viewportHeight,
+        userAgent: taskData.userAgent,
+        headers: taskData.headers ? JSON.parse(taskData.headers) : "",
+        cookies: taskData.cookies ? JSON.parse(taskData.cookies) : "",
+        lightMode: taskData.lightMode === "true",
+        textMode: taskData.textMode === "true",
+        jsEnabled: taskData.jsEnabled === "true",
+        cacheEnabled: taskData.cacheEnabled === "true",
+      },
+    };
+    console.log(runData);
+    setTaskResult([]);
+    handleRunTask(runData);
   };
 
   const handleRunTask = async (data: any) => {

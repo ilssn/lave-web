@@ -13,12 +13,12 @@ export default function ModelForm({ taskData, onTaskDataChange }: { taskData: an
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="default">关闭（只根据任务链接进行提取）</SelectItem>
-          <SelectItem value="auto">开启（从页面中自动检索更多链接）</SelectItem>
+          <SelectItem value="deep">开启（从页面中自动检索更多链接）</SelectItem>
         </SelectContent>
       </Select>
     </div>
 
-    {taskData.searchModel === "auto" && (
+    {taskData.searchModel === "deep" && (
       <div className="w-full flex justify-between space-x-4">
         <div className="flex-1">
           <Label htmlFor="max-depth">最大爬取深度</Label>

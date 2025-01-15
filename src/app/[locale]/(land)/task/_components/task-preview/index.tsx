@@ -170,7 +170,7 @@ const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
 
               <TabsContent value="json" className="w-full h-full mt-0">
                 {currentResult ? (
-                  <JsonEditor initialData={currentResult.data} />
+                  <JsonEditor initialData={results} />
                 ) : (
                   <p className="text-sm text-gray-400 text-center mt-8">暂无数据</p>
                 )}
