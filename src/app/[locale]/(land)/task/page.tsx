@@ -5,6 +5,8 @@ import { useState } from "react";
 
 import LandHeader from "@/components/common/land-header";
 
+import { useHistoryStore } from "@/stores";
+import { HistoryType } from "@/stores/slices/history-slice";
 import TaskConfig from "./_components/task-config";
 import TaskPreview from "./_components/task-preview";
 
@@ -117,6 +119,7 @@ const TaskPage = () => {
   const [taskData, setTaskData] = useState<any>(DEFAULT_TASK_DATA);
   const [taskResult, setTaskResult] = useState<any>([]);
   const [loading, setLoading] = useState(false);
+  const addHistory = useHistoryStore((state) => state.addHistory);
 
   const handleResetTaskData = (type: string) => {
     if (type === "default") {
@@ -256,6 +259,10 @@ const TaskPage = () => {
             description: "网页数据提取任务完成。",
             variant: "default",
           });
+          addHistory(
+            { taskData: { ...taskData, schema: data.schema }, result: statusData.results },
+            HistoryType.DATA_EXTRACT
+          );
           break;
         } else if (taskStatus === "failed") {
           // 如果任务状态为失败，则显示任务失败的消息
@@ -298,6 +305,8 @@ const TaskPage = () => {
             loading={loading}
             onResetTaskData={handleResetTaskData}
             onFetchSchema={fetchSchema}
+            setTaskResult={setTaskResult}
+            setTaskData={setTaskData}
           />
         </div>
         <div className="relative flex-1 md:w-[calc(100%-500px)]">

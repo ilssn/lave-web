@@ -29,13 +29,14 @@ import { Textarea } from "@/components/ui/textarea";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useClientTranslation } from "@/hooks/global";
 import { RotateCcw, StarsIcon } from "lucide-react";
+import { HistoryModal } from "../task-history";
 import BrowserForm from "./browser-from";
 import DynamicForm from "./dynamic-form";
 import LinkTabs from "./link-tabs";
 import ModelForm from "./model-form";
 import ProxyForm from "./proxy-form";
 
-const TaskConfig = ({ taskData, onTaskDataChange, onTaskResult, taskResult, loading, onResetTaskData, onFetchSchema }: any) => {
+const TaskConfig = ({ taskData, onTaskDataChange, onTaskResult, taskResult, loading, onResetTaskData, onFetchSchema, setTaskResult, setTaskData }: any) => {
   const [showAdvancedConfig, setShowAdvancedConfig] = React.useState(true);
   const { t } = useClientTranslation();
 
@@ -96,7 +97,8 @@ const TaskConfig = ({ taskData, onTaskDataChange, onTaskResult, taskResult, load
 
         </CardContent>
         <CardFooter className="flex justify-between space-x-4">
-          <Button variant="outline" className="w-full">历史记录</Button>
+          {/* <Button variant="outline" className="w-full">历史记录</Button> */}
+          <HistoryModal setTaskResult={setTaskResult} setTaskData={setTaskData} />
           <Button
             className="w-full"
             disabled={loading || taskData.startUrls.length === 0}

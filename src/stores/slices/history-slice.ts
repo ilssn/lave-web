@@ -4,6 +4,7 @@ import { StateCreator } from "zustand";
 
 export enum HistoryType {
   VIDEO_GENERATION = "VIDEO_GENERATION",
+  DATA_EXTRACT = "DATA_EXTRACT",
 }
 
 // History interface with an additional result property
