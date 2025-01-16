@@ -102,7 +102,7 @@ const TaskConfig = ({ taskData, onTaskDataChange, onTaskResult, taskResult, load
             disabled={loading || taskData.startUrls.length === 0}
             onClick={() => onTaskResult(taskData)}
           >
-            {loading ? `任务进行中... ${taskResult?.length || 0}/${taskData.maxLinks}` : "开始任务"}
+            {loading ? `任务进行中... ${taskResult?.length || 0}/${taskData.searchModel === "deep" ? taskData.maxLinks : taskData.startUrls.length}` : "开始任务"}
           </Button>
         </CardFooter>
       </Card>
