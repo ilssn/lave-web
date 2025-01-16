@@ -148,21 +148,23 @@ const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
           <CardContent className="overflow-hidden w-full flex-1">
             <div className="w-full h-full overflow-scroll bg-gray-200 border-8 border-gray-200 rounded-md">
               <TabsContent value="card" className="w-full h-full mt-0">
-                {currentResult ? (
-                  currentResult.data?.map((item: any, idx: number) => (
-                    <div key={idx} className="p-4 bg-white shadow rounded mb-4 w-full">
-                      <h3 className="text-lg font-bold mb-2">数据 {idx + 1}</h3>
-                      <div className="space-y-2">
-                        {Object.entries(item).map(([key, value]) => (
-                          key !== 'error' && (
-                            <div key={key} className="flex flex-col">
-                              <span className="font-semibold text-gray-700">{key}:</span>
-                              <span className="text-gray-600">{String(value)}</span>
-                            </div>
-                          )
-                        ))}
+                {results.length > 0 ? (
+                  results.map((result: any, resultIdx: number) => (
+                    result.data?.map((item: any, idx: number) => (
+                      <div key={`${resultIdx}-${idx}`} className="p-4 bg-white shadow rounded mb-4 w-full">
+                        <h3 className="text-lg font-bold mb-2">数据 {resultIdx + 1}-{idx + 1}</h3>
+                        <div className="space-y-2">
+                          {Object.entries(item).map(([key, value]) => (
+                            key !== 'error' && (
+                              <div key={key} className="flex flex-col">
+                                <span className="font-semibold text-gray-700">{key}:</span>
+                                <span className="text-gray-600">{String(value)}</span>
+                              </div>
+                            )
+                          ))}
+                        </div>
                       </div>
-                    </div>
+                    ))
                   ))
                 ) : (
                   <p className="text-sm text-gray-400 text-center mt-8">暂无数据</p>
