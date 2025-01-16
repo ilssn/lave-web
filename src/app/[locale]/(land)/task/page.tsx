@@ -76,16 +76,24 @@ const TaskPage = () => {
         type: "string",
         description: "文章主题",
       },
+      view: {
+        type: "number",
+        description: "文章浏览量",
+      },
       detail: {
         type: "string",
-        description: "文章详情, 包含标题、作者、发布时间、正文概要",
+        description: "文章详情概要",
       },
       keywords: {
         type: "array",
-        description: "文章关键词",
+        description: "文章关键词, 最多5个",
         items: {
           type: "string",
         },
+      },
+      hot: {
+        type: "boolean",
+        description: "是否为热门文章, 浏览量超过10",
       },
     },
     // proxy config
