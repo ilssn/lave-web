@@ -54,9 +54,9 @@ const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
               <div className="text-lg font-bold">界面预览</div>
               <div className="flex items-center justify-end space-x-2">
                 <TabsList className="">
-                  <TabsTrigger value="screenshot">截图</TabsTrigger>
-                  <TabsTrigger value="html">HTML</TabsTrigger>
-                  <TabsTrigger value="md">MD</TabsTrigger>
+                  <TabsTrigger value="screenshot" className="data-[state=active]:text-primary">截图</TabsTrigger>
+                  <TabsTrigger value="html" className="data-[state=active]:text-primary">HTML</TabsTrigger>
+                  <TabsTrigger value="md" className="data-[state=active]:text-primary">MD</TabsTrigger>
                 </TabsList>
                 <Button size={"icon"} variant="ghost" onClick={() => setIsFullScreen(!isFullScreen)} className="text-gray-400 bg-gray-100 rounded-md">
                   {isFullScreen ? <ShrinkIcon className="w-4 h-4" /> : <ExpandIcon className="w-4 h-4" />}
@@ -135,8 +135,8 @@ const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
                 <div className="text-lg font-bold">数据预览</div>
                 <div className="flex items-center justify-end space-x-2">
                   <TabsList className="">
-                    <TabsTrigger value="card">卡片模式</TabsTrigger>
-                    <TabsTrigger value="json">JSON模式</TabsTrigger>
+                    <TabsTrigger value="card" className="data-[state=active]:text-primary">卡片模式</TabsTrigger>
+                    <TabsTrigger value="json" className="data-[state=active]:text-primary">JSON模式</TabsTrigger>
                   </TabsList>
                   <Button size={"icon"} variant="ghost" onClick={() => setIsDataFullScreen(!isDataFullScreen)} className="text-gray-400 bg-gray-100 rounded-md">
                     {isDataFullScreen ? <ShrinkIcon className="w-4 h-4" /> : <ExpandIcon className="w-4 h-4" />}

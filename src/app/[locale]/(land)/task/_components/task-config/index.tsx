@@ -26,14 +26,16 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useClientTranslation } from "@/hooks/global";
+import { RotateCcw, StarsIcon } from "lucide-react";
 import BrowserForm from "./browser-from";
 import DynamicForm from "./dynamic-form";
 import LinkTabs from "./link-tabs";
 import ModelForm from "./model-form";
 import ProxyForm from "./proxy-form";
 
-const TaskConfig = ({ taskData, onTaskDataChange, onTaskResult, taskResult, loading }: any) => {
+const TaskConfig = ({ taskData, onTaskDataChange, onTaskResult, taskResult, loading, onResetTaskData }: any) => {
   const [showAdvancedConfig, setShowAdvancedConfig] = React.useState(true);
   const { t } = useClientTranslation();
 
@@ -42,7 +44,36 @@ const TaskConfig = ({ taskData, onTaskDataChange, onTaskResult, taskResult, load
       <Card className="w-full rounded-none">
         <CardHeader className="flex-row items-center justify-between">
           <div className="flex-1 space-y-1">
-            <CardTitle>{t("基础设置")}</CardTitle>
+            <CardTitle className="flex items-center justify-between">
+              <div className="text-lg font-bold">{t("基础设置")}</div>
+              <div className="flex items-center justify-end space-x-2">
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button className="" size="icon" variant="ghost" onClick={() => onResetTaskData("test")}>
+                        <StarsIcon className="h-4 w-4" />
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      快速测试
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button className="" size="icon" variant="ghost" onClick={() => onResetTaskData("default")}>
+                        <RotateCcw className="h-4 w-4" />
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      重置表单
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </div>
+
+            </CardTitle>
             <CardDescription>
             </CardDescription>
           </div>
@@ -99,10 +130,10 @@ const TaskConfig = ({ taskData, onTaskDataChange, onTaskResult, taskResult, load
             <CardContent className="max-h-[calc(100vh-24.5rem)] overflow-y-auto">
               <Tabs defaultValue="data-config" className="w-[400px]">
                 <TabsList className="grid w-full grid-cols-4">
-                  <TabsTrigger value="data-config">数据设置</TabsTrigger>
-                  <TabsTrigger value="model-config">模式设置</TabsTrigger>
-                  <TabsTrigger value="proxy-config">代理设置</TabsTrigger>
-                  <TabsTrigger value="browser-config">浏览器设置</TabsTrigger>
+                  <TabsTrigger value="data-config" className="data-[state=active]:text-primary">数据设置</TabsTrigger>
+                  <TabsTrigger value="model-config" className="data-[state=active]:text-primary">模式设置</TabsTrigger>
+                  <TabsTrigger value="proxy-config" className="data-[state=active]:text-primary">代理设置</TabsTrigger>
+                  <TabsTrigger value="browser-config" className="data-[state=active]:text-primary">浏览器设置</TabsTrigger>
                 </TabsList>
                 <TabsContent value="data-config">
                   <DynamicForm taskData={taskData} onTaskDataChange={onTaskDataChange} />

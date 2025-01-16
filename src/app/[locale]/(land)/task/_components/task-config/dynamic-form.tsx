@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { MagicWandIcon } from "@radix-ui/react-icons";
-import { MinusCircleIcon, PlusIcon, Trash2Icon } from "lucide-react";
+import { MinusCircleIcon, Paintbrush, PlusIcon } from "lucide-react";
 import * as React from "react";
 
 const convertToSchemaObject = (formData: { key: string; type: string; description: string }[]) => {
@@ -106,13 +107,31 @@ const DynamicForm = ({ taskData, onTaskDataChange }: any) => {
         <PlusIcon className="h-4 w-4 hover:text-primary hover:scale-110" />
       </Button>
       <div className="flex w-full justify-between">
-        <Button variant="outline" onClick={handleResetForm}>
-          <Trash2Icon className="h-4 w-4 hover:text-red-600 hover:scale-110" />
-        </Button>
-        <Button variant="outline" onClick={handleAddField} className="text-primary hover:text-primary">
-          AI生成
-          <MagicWandIcon className="h-4 w-4 hover:text-primary hover:scale-110" />
-        </Button>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button variant="outline" size="icon" onClick={handleResetForm} className="text-red-500 hover:text-red-500 hover:border-red-500">
+                <Paintbrush className="h-4 w-4 hover:scale-110" />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>
+              清空数据
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button variant="outline" size="icon" onClick={handleAddField} className="text-primary hover:text-primary hover:border-primary">
+                <MagicWandIcon className="h-4 w-4 hover:scale-110" />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>
+              AI生成
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+
       </div>
     </div>
   );

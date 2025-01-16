@@ -1,6 +1,7 @@
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Trash2Icon } from "lucide-react";
+import { PlusIcon, Trash2Icon } from "lucide-react";
 import { useState } from "react";
 
 const LinkInput = ({ links, setLinks }: { links: string[], setLinks: (links: string[]) => void }) => {
@@ -11,9 +12,15 @@ const LinkInput = ({ links, setLinks }: { links: string[], setLinks: (links: str
     if (e.key === "Enter") {
       e.preventDefault();
       if (currentLink.trim() !== "") {
-        setLinks([...links, currentLink.trim()]);
-        setCurrentLink("");
+        handleAddLink();
       }
+    }
+  };
+
+  const handleAddLink = () => {
+    if (currentLink.trim() !== "") {
+      setLinks([...links, currentLink.trim()]);
+      setCurrentLink("");
     }
   };
 
@@ -29,18 +36,26 @@ const LinkInput = ({ links, setLinks }: { links: string[], setLinks: (links: str
   return (
     <div>
       <Label htmlFor="start-url">添加链接</Label>
-      <Input
-        id="start-url"
-        type="text"
-        className="w-full p-2 border rounded"
-        value={currentLink}
-        onKeyDown={handleKeyDown}
-        onChange={handleChange}
-        placeholder="输入链接并回车/添加"
-      />
+      <div className="relative">
+        <Input
+          id="start-url"
+          type="text"
+          className="w-full p-2 border rounded"
+          value={currentLink}
+          onKeyDown={handleKeyDown}
+          onChange={handleChange}
+          placeholder="输入链接并回车/添加"
+        />
+        <Button className="absolute right-[2px] top-[2px] hover:text-primary"
+          size="sm"
+          variant="ghost"
+          onClick={() => handleAddLink()}>
+          <PlusIcon className="h-4 w-4 hover:scale-110" />
+        </Button>
+      </div>
       <div className="mt-2 space-y-2">
         {links.map((link, index) => (
-          <div key={index} className="flex items-center relative">
+          <div key={index} className="relative">
             <Input
               type="text"
               className="w-full p-2 border rounded mt-1"
@@ -51,10 +66,9 @@ const LinkInput = ({ links, setLinks }: { links: string[], setLinks: (links: str
                 setLinks(newLinks);
               }}
             />
-            <Trash2Icon
-              className="absolute right-2 top-4 w-4 h-4 text-red-500 hover:text-red-600 hover:scale-105 hover:cursor-pointer"
-              onClick={() => removeLink(index)}
-            />
+            <Button variant="ghost" size="sm" className="absolute right-[2px] top-[2px] hover:text-red-600" onClick={() => removeLink(index)}>
+              <Trash2Icon className="w-4 h-4 hover:scale-110" />
+            </Button>
           </div>
         ))}
       </div>

@@ -32,7 +32,36 @@ interface pageProps {
 const TaskPage = () => {
   const { toast } = useToast();
   // const { t } = await serverTranslation(locale);
-  const [taskData, setTaskData] = useState<any>({
+  const DEFAULT_TASK_DATA = {
+    // task config
+    startUrls: [],
+    taskDescription: "",
+    // model config
+    matchType: "auto", // auto manual
+    searchModel: "default", // default, deep, agent 
+    maxDepth: 2,
+    maxLinks: 20,
+    // data config
+    schema: {},
+    // proxy config
+    proxyUrl: "",
+    proxyUsername: "",
+    proxyPassword: "",
+    // browser config
+    headless: "true",
+    browserType: "chromium",
+    viewportWidth: 1920,
+    viewportHeight: 1080,
+    userAgent: "",
+    headers: "",
+    cookies: "",
+    lightMode: "false",
+    textMode: "false",
+    jsEnabled: "false",
+    cacheEnabled: "false",
+  }
+
+  const TEST_TASK_DATA = {
     // task config
     startUrls: ["https://news.302.ai"],
     taskDescription: "AI大模型及详情介绍",
@@ -75,23 +104,19 @@ const TaskPage = () => {
     textMode: "false",
     jsEnabled: "false",
     cacheEnabled: "false",
-  });
+  }
 
-  const [taskResult, setTaskResult] = useState<any>([
-    // {
-    //   url: "https://news.302.ai",
-    //   screenshot: "https://file.302.ai/news.302.ai.png",
-    //   html: "<h1>Page1 AI大模型及详情介绍</h1> <p>AI大模型及详情介绍12312 123123123123 fdsfsfsdfsfsf 123213123123131</p>",
-    //   markdown: "## AI大模型及详情介绍 \n ### AI大模型及详情介绍",
-    // },
-    // {
-    //   url: "https://news.302.ai/page2",
-    //   screenshot: "https://file.302.ai/news.302.ai.png",
-    //   html: "<h1>Page2 AI大模型及详情介绍</h1> <p>AI大模型及详情介绍12312 123123123123 fdsfsfsdfsfsf 123213123123131</p>",
-    //   markdown: "## AI大模型及详情介绍",
-    // },
-  ]);
+  const [taskData, setTaskData] = useState<any>(DEFAULT_TASK_DATA);
+  const [taskResult, setTaskResult] = useState<any>([]);
   const [loading, setLoading] = useState(false);
+
+  const handleResetTaskData = (type: string) => {
+    if (type === "default") {
+      setTaskData(DEFAULT_TASK_DATA);
+    } else if (type === "test") {
+      setTaskData(TEST_TASK_DATA);
+    }
+  }
 
   const handleTaskDataChange = (key: string, value: any) => {
     setTaskData((prevData: any) => ({
@@ -214,6 +239,7 @@ const TaskPage = () => {
             onTaskResult={handleTaskResult}
             taskResult={taskResult}
             loading={loading}
+            onResetTaskData={handleResetTaskData}
           />
         </div>
         <div className="relative flex-1 md:w-[calc(100%-500px)]">
