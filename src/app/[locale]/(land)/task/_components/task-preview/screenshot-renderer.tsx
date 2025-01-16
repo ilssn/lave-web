@@ -28,7 +28,7 @@ const ScreenshotRenderer: React.FC<ScreenshotRendererProps> = ({ src, alt }) => 
       <Image
         src={src}
         alt={alt}
-        onLoadingComplete={handleImageLoad}
+        onLoad={handleImageLoad}
         onError={handleImageError}
         width={1000}
         height={1000}
