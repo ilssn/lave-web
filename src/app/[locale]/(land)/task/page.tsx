@@ -252,7 +252,7 @@ const TaskPage = () => {
         if (taskStatus === "completed") {
           toast({
             title: "任务完成",
-            description: "任务已成功完成。",
+            description: "网页数据提取任务完成。",
             variant: "default",
           });
           break;
@@ -260,7 +260,7 @@ const TaskPage = () => {
           // 如果任务状态为失败，则显示任务失败的消息
           toast({
             title: "任务失败",
-            description: "任务未能成功完成。",
+            description: "网页数据提取任务失败！",
             variant: "destructive",
           });
           throw new Error("任务失败");
