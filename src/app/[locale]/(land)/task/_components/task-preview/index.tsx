@@ -58,7 +58,7 @@ const TaskPreview = ({ className, results = [], currentIndex, setCurrentIndex }:
                   <TabsTrigger value="html" className="data-[state=active]:text-primary">HTML</TabsTrigger>
                   <TabsTrigger value="md" className="data-[state=active]:text-primary">MD</TabsTrigger>
                 </TabsList>
-                <Button size={"icon"} variant="ghost" onClick={() => setIsFullScreen(!isFullScreen)} className="text-gray-400 bg-gray-100 rounded-md">
+                <Button size={"icon"} variant="ghost" onClick={() => setIsFullScreen(!isFullScreen)}>
                   {isFullScreen ? <ShrinkIcon className="w-4 h-4" /> : <ExpandIcon className="w-4 h-4" />}
                 </Button>
               </div>
@@ -138,7 +138,7 @@ const TaskPreview = ({ className, results = [], currentIndex, setCurrentIndex }:
                     <TabsTrigger value="card" className="data-[state=active]:text-primary">卡片模式</TabsTrigger>
                     <TabsTrigger value="json" className="data-[state=active]:text-primary">JSON模式</TabsTrigger>
                   </TabsList>
-                  <Button size={"icon"} variant="ghost" onClick={() => setIsDataFullScreen(!isDataFullScreen)} className="text-gray-400 bg-gray-100 rounded-md">
+                  <Button size={"icon"} variant="ghost" onClick={() => setIsDataFullScreen(!isDataFullScreen)}>
                     {isDataFullScreen ? <ShrinkIcon className="w-4 h-4" /> : <ExpandIcon className="w-4 h-4" />}
                   </Button>
                 </div>
