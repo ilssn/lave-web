@@ -28,21 +28,21 @@ import ScreenshotRenderer from './screenshot-renderer';
 type TaskPreviewProps = {
   className?: string;
   results: any[];
+  currentIndex: number;
+  setCurrentIndex: (index: number) => void;
 };
 
 const handleDownload = (data: string, filename: string, type: string) => {
   FileManager.saveDataToFile(data, filename, type);
 };
 
-const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
-  const [selectedIndex, setSelectedIndex] = useState(0);
+const TaskPreview = ({ className, results = [], currentIndex, setCurrentIndex }: TaskPreviewProps) => {
   const [currentResult, setCurrentResult] = useState(results[0] || null);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [isDataFullScreen, setIsDataFullScreen] = useState(false);
-
   useEffect(() => {
-    setCurrentResult(results[selectedIndex]);
-  }, [selectedIndex, results.length]);
+    setCurrentResult(results[currentIndex]);
+  }, [currentIndex, results.length]);
 
   return (
     <div className={cn("overflow-y-scroll scroll-smooth h-full flex flex-col space-y-4", className)}>
@@ -66,14 +66,14 @@ const TaskPreview = ({ className, results = [] }: TaskPreviewProps) => {
           </CardHeader>
           <CardContent className="overflow-hidden w-full flex-1">
             <div className="w-full h-full flex flex-col bg-gray-200 border-8 border-gray-200 rounded-md relative">
-              <PageTab pages={results} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
+              <PageTab pages={results} selectedIndex={currentIndex} setSelectedIndex={setCurrentIndex} />
               <div className="w-full flex-1 overflow-scroll">
                 <TabsContent value="screenshot" className="w-full h-full">
                   {currentResult ? (
                     <>
                       <ScreenshotRenderer
                         src={currentResult.screenshot}
-                        alt={`Screenshot ${selectedIndex + 1}`}
+                        alt={`Screenshot ${currentIndex + 1}`}
                       />
 
                       <Button

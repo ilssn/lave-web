@@ -119,6 +119,7 @@ const TaskPage = () => {
   const [taskData, setTaskData] = useState<any>(DEFAULT_TASK_DATA);
   const [taskResult, setTaskResult] = useState<any>([]);
   const [loading, setLoading] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const addHistory = useHistoryStore((state) => state.addHistory);
 
   const handleResetTaskData = (type: string) => {
@@ -169,6 +170,7 @@ const TaskPage = () => {
     };
     console.log(runData);
     setTaskResult([]);
+    setCurrentIndex(0);
     handleRunTask(runData);
   };
 
@@ -310,7 +312,7 @@ const TaskPage = () => {
           />
         </div>
         <div className="relative flex-1 md:w-[calc(100%-500px)]">
-          <TaskPreview results={taskResult || []} />
+          <TaskPreview results={taskResult || []} currentIndex={currentIndex} setCurrentIndex={setCurrentIndex} />
         </div>
       </section>
     </div>
