@@ -19,7 +19,11 @@ const LinkInput = ({ links, setLinks }: { links: string[], setLinks: (links: str
 
   const handleAddLink = () => {
     if (currentLink.trim() !== "") {
-      setLinks([...links, currentLink.trim()]);
+      let formattedLink = currentLink.trim();
+      if (!formattedLink.startsWith("http://") && !formattedLink.startsWith("https://")) {
+        formattedLink = "https://" + formattedLink;
+      }
+      setLinks([...links, formattedLink]);
       setCurrentLink("");
     }
   };
