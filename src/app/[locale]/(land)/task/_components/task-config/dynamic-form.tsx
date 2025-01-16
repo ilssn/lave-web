@@ -103,8 +103,8 @@ const DynamicForm = ({ taskData, onTaskDataChange }: any) => {
         </div>
       ))}
 
-      <Button variant="ghost" onClick={handleAddField} className="w-full border">
-        <PlusIcon className="h-4 w-4 hover:text-primary hover:scale-110" />
+      <Button variant="ghost" onClick={handleAddField} className="w-full border hover:text-primary">
+        <PlusIcon className="h-4 w-4 hover:scale-110" />
       </Button>
       <div className="flex w-full justify-between">
         <TooltipProvider>
