@@ -15,11 +15,15 @@ const convertToSchemaObject = (formData: { key: string; type: string; descriptio
 const DynamicForm = ({ taskData, onTaskDataChange, onFetchSchema }: any) => {
   const [loading, setLoading] = useState(false);
 
-  const schemaArray = Object.entries(taskData.schema).map(([key, value]) => ({
-    key,
-    type: typeof value === 'object' && value !== null && 'type' in value ? String(value.type) : '',
-    description: typeof value === 'object' && value !== null && 'description' in value ? String(value.description) : ''
-  }));
+  let schemaArray: any[] = [];
+  if (taskData.schema) {
+    schemaArray = Object.entries(taskData.schema).map(([key, value]) => ({
+      key,
+      type: typeof value === 'object' && value !== null && 'type' in value ? String(value.type) : '',
+      description: typeof value === 'object' && value !== null && 'description' in value ? String(value.description) : ''
+    }));
+
+  }
 
   const handleFetchSchema = async () => {
     setLoading(true);
