@@ -13,20 +13,13 @@ const JsonEditor = ({ initialData }: { initialData: any }) => {
 
   useEffect
     (() => {
-      const data = initialData.map((item: any) => {
-        return {
-          depth: item.depth,
-          url: item.url,
-          title: item.metadata.title,
-          description: item.metadata.description,
-          data: item.data.map((item: any) => {
-            const { error, ...rest } = item;
-            return {
-              ...rest,
-            }
-          }),
-          // metadata: item.metadata,
-        }
+      const data = initialData.flatMap((item: any) => {
+        return item.data.map((item: any) => {
+          const { error, ...rest } = item;
+          return {
+            ...rest,
+          }
+        })
       })
       setJsonData(JSON.stringify(data, null, 2));
     }, [initialData]);
