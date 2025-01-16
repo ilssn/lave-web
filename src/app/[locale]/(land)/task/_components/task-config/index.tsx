@@ -67,7 +67,7 @@ const TaskConfig = ({ taskData, onTaskDataChange, onTaskResult, taskResult, load
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>
-                      重置表单
+                      重置任务
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>

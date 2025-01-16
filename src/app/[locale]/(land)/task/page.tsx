@@ -124,6 +124,7 @@ const TaskPage = () => {
     } else if (type === "test") {
       setTaskData(TEST_TASK_DATA);
     }
+    setTaskResult([]);
   }
 
   const handleTaskDataChange = (key: string, value: any) => {
