@@ -1,6 +1,6 @@
 import { DotLoader } from '@/components/common/loader-renderer';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface ScreenshotRendererProps {
   src: string;
@@ -9,6 +9,11 @@ interface ScreenshotRendererProps {
 
 const ScreenshotRenderer: React.FC<ScreenshotRendererProps> = ({ src, alt }) => {
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // 当 src 变化时，重置 loading 状态
+    setLoading(true);
+  }, [src]);
 
   const handleImageLoad = () => {
     setLoading(false);
@@ -19,12 +24,9 @@ const ScreenshotRenderer: React.FC<ScreenshotRendererProps> = ({ src, alt }) => 
     console.error('Image failed to load');
   };
 
-
   return (
     <div className="relative w-full h-full">
-      {
-        loading && <DotLoader className="absolute top-0 left-0 z-50" />
-      }
+      {loading && <DotLoader className="absolute top-0 left-0 z-50" />}
       <Image
         src={src}
         alt={alt}
@@ -32,7 +34,13 @@ const ScreenshotRenderer: React.FC<ScreenshotRendererProps> = ({ src, alt }) => 
         onError={handleImageError}
         width={1000}
         height={1000}
-        style={{ width: '100%', height: 'auto', borderRadius: '0.3rem' }}
+        style={{
+          width: '100%',
+          height: 'auto',
+          borderRadius: '0.3rem',
+          opacity: loading ? 0 : 1,
+          transition: 'opacity 0.3s ease-in-out',
+        }}
       />
     </div>
   );
