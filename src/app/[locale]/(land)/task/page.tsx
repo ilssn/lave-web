@@ -133,9 +133,9 @@ const TaskPage = () => {
     }));
   };
 
-  const handleTaskResult = (taskData: any) => {
+  const handleTaskResult = async (taskData: any) => {
     console.log(taskData);
-    // return
+    const schema = await getSchema();
     const runData = {
       urls: taskData.startUrls,
       target: taskData.taskDescription,
@@ -143,7 +143,7 @@ const TaskPage = () => {
         maxDepth: taskData.searchModel === "deep" ? taskData.maxDepth : 1,
         maxUrls: taskData.searchModel === "deep" ? taskData.maxLinks : taskData.startUrls.length,
       },
-      schema: taskData.schema,
+      schema: schema,
       proxyConfig: {
         proxyUrl: taskData.proxyUrl,
         proxyUsername: taskData.proxyUsername,
@@ -166,6 +166,54 @@ const TaskPage = () => {
     console.log(runData);
     setTaskResult([]);
     handleRunTask(runData);
+  };
+
+  const fetchSchema = async (description: string) => {
+    try {
+      const response = await fetch("http://192.168.199.229:3000/crawler/generate-schema", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ description }),
+      });
+
+      if (!response.ok) {
+        throw new Error("获取schema失败");
+      }
+
+      const schemaData = await response.json();
+      return schemaData;
+    } catch (error) {
+      console.error("Error fetching schema:", error);
+      return null;
+    }
+  };
+
+  const getSchema = async () => {
+    try {
+      setLoading(true);
+      if (Object.keys(taskData.schema).length > 0) {
+        return taskData.schema;
+      }
+      if (taskData.taskDescription) {
+        const { schema } = await fetchSchema(taskData.taskDescription);
+        handleTaskDataChange("schema", schema);
+        return schema;
+      }
+      return {};
+
+    } catch (error) {
+      // console.error("Error fetching schema:", error);
+      toast({
+        title: "获取schema失败",
+        description: (error as Error).message,
+        variant: "destructive",
+      });
+      return {};
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleRunTask = async (data: any) => {
@@ -248,6 +296,7 @@ const TaskPage = () => {
             taskResult={taskResult}
             loading={loading}
             onResetTaskData={handleResetTaskData}
+            onFetchSchema={fetchSchema}
           />
         </div>
         <div className="relative flex-1 md:w-[calc(100%-500px)]">

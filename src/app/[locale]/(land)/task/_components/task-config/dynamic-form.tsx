@@ -1,3 +1,4 @@
+import { CircleLoader } from "@/components/common/loader-renderer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -5,18 +6,32 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { MagicWandIcon } from "@radix-ui/react-icons";
 import { MinusCircleIcon, Paintbrush, PlusIcon } from "lucide-react";
 import * as React from "react";
+import { useState } from "react";
 
 const convertToSchemaObject = (formData: { key: string; type: string; description: string }[]) => {
   return Object.fromEntries(formData.map(field => [field.key, { type: field.type, description: field.description }]));
 };
 
-const DynamicForm = ({ taskData, onTaskDataChange }: any) => {
+const DynamicForm = ({ taskData, onTaskDataChange, onFetchSchema }: any) => {
+  const [loading, setLoading] = useState(false);
 
   const schemaArray = Object.entries(taskData.schema).map(([key, value]) => ({
     key,
     type: typeof value === 'object' && value !== null && 'type' in value ? String(value.type) : '',
     description: typeof value === 'object' && value !== null && 'description' in value ? String(value.description) : ''
   }));
+
+  const handleFetchSchema = async () => {
+    setLoading(true);
+    try {
+      const { schema } = await onFetchSchema(taskData.taskDescription);
+      onTaskDataChange("schema", schema);
+    } catch (error) {
+      console.error("Error fetching schema:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleKeyChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
     const newFormData = [...schemaArray];
@@ -123,8 +138,16 @@ const DynamicForm = ({ taskData, onTaskDataChange }: any) => {
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button variant="outline" size="icon" onClick={handleAddField} className="text-primary hover:text-primary hover:border-primary">
-                <MagicWandIcon className="h-4 w-4 hover:scale-110" />
+              <Button
+                disabled={!taskData.taskDescription || loading}
+                variant="outline"
+                size="icon"
+                onClick={handleFetchSchema}
+                className={`text-primary hover:text-primary hover:border-primary ${loading ? "cursor-not-allowed" : ""}`}
+              >
+                <CircleLoader loading={loading}>
+                  <MagicWandIcon className="h-4 w-4 hover:scale-110" />
+                </CircleLoader>
               </Button>
             </TooltipTrigger>
             <TooltipContent>

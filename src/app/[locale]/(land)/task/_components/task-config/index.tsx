@@ -35,7 +35,7 @@ import LinkTabs from "./link-tabs";
 import ModelForm from "./model-form";
 import ProxyForm from "./proxy-form";
 
-const TaskConfig = ({ taskData, onTaskDataChange, onTaskResult, taskResult, loading, onResetTaskData }: any) => {
+const TaskConfig = ({ taskData, onTaskDataChange, onTaskResult, taskResult, loading, onResetTaskData, onFetchSchema }: any) => {
   const [showAdvancedConfig, setShowAdvancedConfig] = React.useState(true);
   const { t } = useClientTranslation();
 
@@ -79,10 +79,6 @@ const TaskConfig = ({ taskData, onTaskDataChange, onTaskResult, taskResult, load
           </div>
         </CardHeader>
         <CardContent className="max-h-[calc(100vh-24.5rem)] space-y-4 overflow-y-auto">
-          {/* <div className="w-full">
-            <Label htmlFor="start-url">起始链接</Label>
-            <Input id="start-url" placeholder="起始链接" className="w-full" value={taskData.startUrl} onChange={(e) => onTaskDataChange("startUrl", e.target.value)} />
-          </div> */}
 
           <div className="w-full">
             <Label htmlFor="task-description">任务描述</Label>
@@ -136,7 +132,11 @@ const TaskConfig = ({ taskData, onTaskDataChange, onTaskResult, taskResult, load
                   <TabsTrigger value="browser-config" className="data-[state=active]:text-primary">浏览器设置</TabsTrigger>
                 </TabsList>
                 <TabsContent value="data-config">
-                  <DynamicForm taskData={taskData} onTaskDataChange={onTaskDataChange} />
+                  <DynamicForm
+                    taskData={taskData}
+                    onTaskDataChange={onTaskDataChange}
+                    onFetchSchema={onFetchSchema}
+                  />
                 </TabsContent>
                 <TabsContent value="model-config">
                   <ModelForm taskData={taskData} onTaskDataChange={onTaskDataChange} />
