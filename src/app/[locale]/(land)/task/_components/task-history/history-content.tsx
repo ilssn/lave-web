@@ -20,7 +20,6 @@ export function HistoryContent({ setTaskResult, setTaskData }: any) {
   if (crawlerHistory.isEmpty) return <>{t("global:history.empty")}</>;
 
   const handleRefresh = (history: any) => {
-    console.log(history.payload);
     setTaskResult(history.payload.result);
     setTaskData(history.payload.taskData);
   };

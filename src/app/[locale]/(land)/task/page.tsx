@@ -1,13 +1,14 @@
 "use client";
+
 // import { Metadata } from "next";
-import { useToast } from "@/hooks/global/use-toast";
 import { useState } from "react";
 
 import LandHeader from "@/components/common/land-header";
-
+import { useToast } from "@/hooks/global/use-toast";
 import { apiCrawler } from "@/lib/api";
 import { useHistoryStore } from "@/stores";
 import { HistoryType } from "@/stores/slices/history-slice";
+
 import TaskConfig from "./_components/task-config";
 import TaskPreview from "./_components/task-preview";
 
@@ -41,7 +42,7 @@ const TaskPage = () => {
     taskDescription: "",
     // model config
     matchType: "auto", // auto manual
-    searchModel: "default", // default, deep, agent 
+    searchModel: "default", // default, deep, agent
     maxDepth: 2,
     maxLinks: 20,
     // data config
@@ -62,7 +63,7 @@ const TaskPage = () => {
     textMode: "false",
     jsEnabled: "false",
     cacheEnabled: "false",
-  }
+  };
 
   const TEST_TASK_DATA = {
     // task config
@@ -70,7 +71,7 @@ const TaskPage = () => {
     taskDescription: "AI大模型及详情介绍",
     // model config
     matchType: "auto", // auto manual
-    searchModel: "default", // default, deep, agent 
+    searchModel: "default", // default, deep, agent
     maxDepth: 2,
     maxLinks: 20,
     // data config
@@ -115,7 +116,7 @@ const TaskPage = () => {
     textMode: "false",
     jsEnabled: "false",
     cacheEnabled: "false",
-  }
+  };
 
   const [taskData, setTaskData] = useState<any>(DEFAULT_TASK_DATA);
   const [taskResult, setTaskResult] = useState<any>([]);
@@ -130,7 +131,7 @@ const TaskPage = () => {
       setTaskData(TEST_TASK_DATA);
     }
     setTaskResult([]);
-  }
+  };
 
   const handleTaskDataChange = (key: string, value: any) => {
     setTaskData((prevData: any) => ({
@@ -140,14 +141,16 @@ const TaskPage = () => {
   };
 
   const handleTaskResult = async (taskData: any) => {
-    console.log(taskData);
     const schema = await getSchema();
     const runData = {
       urls: taskData.startUrls,
       target: taskData.taskDescription,
       recursiveConfig: {
         maxDepth: taskData.searchModel === "deep" ? taskData.maxDepth : 1,
-        maxUrls: taskData.searchModel === "deep" ? taskData.maxLinks : taskData.startUrls.length,
+        maxUrls:
+          taskData.searchModel === "deep"
+            ? taskData.maxLinks
+            : taskData.startUrls.length,
       },
       schema: schema,
       proxyConfig: {
@@ -169,7 +172,6 @@ const TaskPage = () => {
         cacheEnabled: taskData.cacheEnabled === "true",
       },
     };
-    console.log(runData);
     setTaskResult([]);
     setCurrentIndex(0);
     handleRunTask(runData);
@@ -209,7 +211,6 @@ const TaskPage = () => {
         return schema;
       }
       return {};
-
     } catch (error) {
       // console.error("Error fetching schema:", error);
       toast({
@@ -265,7 +266,10 @@ const TaskPage = () => {
             variant: "default",
           });
           addHistory(
-            { taskData: { ...taskData, schema: data.schema }, result: statusData.results },
+            {
+              taskData: { ...taskData, schema: data.schema },
+              result: statusData.results,
+            },
             HistoryType.DATA_EXTRACT
           );
           break;
@@ -315,7 +319,11 @@ const TaskPage = () => {
           />
         </div>
         <div className="relative flex-1 md:w-[calc(100%-500px)]">
-          <TaskPreview results={taskResult || []} currentIndex={currentIndex} setCurrentIndex={setCurrentIndex} />
+          <TaskPreview
+            results={taskResult || []}
+            currentIndex={currentIndex}
+            setCurrentIndex={setCurrentIndex}
+          />
         </div>
       </section>
     </div>
