@@ -4,7 +4,7 @@ module.exports = {
     {
       name: "Lava_Web",
       script: "./node_modules/next/dist/bin/next",
-      args: "start -p 3090",
+      args: "start -p 4090",
       env: {
         NODE_ENV: "production",
       },
