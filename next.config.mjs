@@ -8,7 +8,7 @@ jiti("./src/env");
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
-  output: "standalone",
+  // output: "standalone",
   experimental: {
     typedRoutes: true,
   },

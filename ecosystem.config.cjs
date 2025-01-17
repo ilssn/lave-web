@@ -2,9 +2,9 @@
 module.exports = {
   apps: [
     {
-      name: "302_AI_Tool",
+      name: "Lava_Web",
       script: "./node_modules/next/dist/bin/next",
-      args: "start -p 3000",
+      args: "start -p 3090",
       env: {
         NODE_ENV: "production",
       },
