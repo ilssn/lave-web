@@ -1,7 +1,8 @@
-import 'github-markdown-css';
-import React from 'react';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
+import React from "react";
+
+import "github-markdown-css";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 interface MarkdownRendererProps {
   content: string;
@@ -11,7 +12,10 @@ interface MarkdownRendererProps {
 const preprocessMarkdown = (content: string) => {
   // 使用正则表达式匹配并替换
   // 匹配形如 http://example.com<http://example2.com> 的字符串，并将其替换为 http://example2.com
-  return content.replace(/https?:\/\/[^\s<]+<\s*(https?:\/\/[^\s>]+)\s*>/g, '$1');
+  return content.replace(
+    /https?:\/\/[^\s<]+<\s*(https?:\/\/[^\s>]+)\s*>/g,
+    "$1"
+  );
 };
 
 const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) => {
@@ -19,23 +23,35 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) => {
   const processedContent = preprocessMarkdown(content);
 
   return (
-    <div className="markdown-body" style={{ backgroundColor: 'white', color: 'black', padding: '1rem', borderRadius: '8px' }}>
+    <div
+      className="markdown-body"
+      style={{
+        backgroundColor: "white",
+        color: "black",
+        padding: "1rem",
+        borderRadius: "8px",
+      }}
+    >
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
           img: ({ node, ...props }) => {
-            if (props.src && typeof props.src === 'string') {
+            if (props.src && typeof props.src === "string") {
               try {
                 new URL(props.src);
-                return <img {...props} alt={props.alt || ''} />;
+                return <img {...props} alt={props.alt || ""} />;
               } catch {
-                return <span>{props.alt || 'Invalid image link'}</span>;
+                return <span>{props.alt || "Invalid image link"}</span>;
               }
             }
-            return <span>{props.alt || 'Invalid image link'}</span>;
+            return <span>{props.alt || "Invalid image link"}</span>;
           },
-          a: ({ node, ...props }) => {
-            return <a {...props} target="_blank" rel="noopener noreferrer">{props.children}</a>;
+          a: ({ ...props }) => {
+            return (
+              <a {...props} target="_blank" rel="noopener noreferrer">
+                {props.children}
+              </a>
+            );
           },
         }}
       >

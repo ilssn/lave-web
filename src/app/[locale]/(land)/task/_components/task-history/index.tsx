@@ -1,6 +1,5 @@
 "use client";
 
-
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -29,7 +28,10 @@ export function HistoryModal({ setTaskResult, setTaskData }: any) {
           <DialogTitle>{t("global:history.title")}</DialogTitle>
           <DialogDescription className="hidden"></DialogDescription>
         </DialogHeader>
-        <HistoryContent setTaskResult={setTaskResult} setTaskData={setTaskData} />
+        <HistoryContent
+          setTaskResult={setTaskResult}
+          setTaskData={setTaskData}
+        />
       </DialogContent>
     </Dialog>
   );

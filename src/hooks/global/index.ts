@@ -8,4 +8,3 @@ export { useShowBrand } from "./use-show-brand";
 export { useAppTheme } from "./use-theme";
 export type { Theme } from "./use-theme";
 export { toast, useToast } from "./use-toast";
-

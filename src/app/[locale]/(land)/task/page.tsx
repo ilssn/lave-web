@@ -1,7 +1,7 @@
 "use client";
 
 // import { Metadata } from "next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import LandHeader from "@/components/common/land-header";
 import { useToast } from "@/hooks/global/use-toast";
@@ -27,11 +27,11 @@ import TaskPreview from "./_components/task-preview";
 //   };
 // }
 
-interface pageProps {
-  params: {
-    locale: string;
-  };
-}
+// interface pageProps {
+//   params: {
+//     locale: string;
+//   };
+// }
 
 const TaskPage = () => {
   const { toast } = useToast();
@@ -297,6 +297,12 @@ const TaskPage = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (document) {
+      document.title = "Lava Web - 网页数据提取工具";
+    }
+  }, []);
 
   return (
     <div className="mx-auto flex w-full max-w-screen-2xl flex-col gap-4 p-4 md:gap-8 md:p-8">

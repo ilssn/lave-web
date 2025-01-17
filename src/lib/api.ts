@@ -56,7 +56,7 @@ const apiCrawler = async (
   options?: RequestInit
 ): Promise<Response> => {
   const url = `${env.NEXT_PUBLIC_CRAWLER_API_URL}/${endpoint}`;
-  const { apiKey, language } = useAppStore.getState();
+  const { apiKey } = useAppStore.getState();
 
   const headers = new Headers(options?.headers);
   if (apiKey) {
@@ -69,4 +69,3 @@ const apiCrawler = async (
 };
 
 export { apiAuth, apiCrawler, apiFetch };
-

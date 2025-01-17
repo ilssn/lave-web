@@ -12,9 +12,9 @@ type Props = {
 };
 
 const AppLogo = ({ type, className, width = 150, height = 42 }: Props) => {
-  const showBrand = useShowBrand()
+  const showBrand = useShowBrand();
   const domain = useDomain();
-  if (!showBrand) return null
+  if (!showBrand) return null;
   return (
     <div className={className}>
       {type === "mini" ? (

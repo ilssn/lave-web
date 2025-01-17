@@ -11,7 +11,8 @@ import { useClientTranslation } from "@/hooks/global";
 
 const SignInForm = () => {
   const { t } = useClientTranslation();
-  const { isPending, setValue, getValues, onAuth, watch, register, errors } = useAuth();
+  const { isPending, setValue, getValues, onAuth, watch, register, errors } =
+    useAuth();
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();

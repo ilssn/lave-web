@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
+import LandHeader from "@/components/common/land-header";
 import { serverTranslation } from "@/i18n";
 
-import LandHeader from "@/components/common/land-header";
 import Test from "./_components/test";
 
 type Props = {

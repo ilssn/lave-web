@@ -1,11 +1,12 @@
 "use client";
 
-import { initializeMonitor } from "@/lib/event";
 import { useEffect } from "react";
+
+import { initializeMonitor } from "@/lib/event";
 
 const AppEvent = () => {
   useEffect(() => {
-    initializeMonitor()
+    initializeMonitor();
   }, []);
   return null;
 };

@@ -242,10 +242,10 @@ export default class FileManager {
       reader.onerror = reject;
       reader.readAsDataURL(blob);
     });
-  }
+  };
 
   static downloadImage = async (url: string, name?: string) => {
-    const base64Url = await this.urlToBase64(url) as string;
+    const base64Url = (await this.urlToBase64(url)) as string;
     const file = await this.imageToFile(url);
     const currentTime = this.getNowformatTime();
     const metaType = file?.type.split("/")[1] || url.split(".")[1];
@@ -271,17 +271,16 @@ export default class FileManager {
 
   static downloadVideo = async (url: string, name?: string) => {
     try {
-      const base64Url = await this.urlToBase64(url) as string;
+      const base64Url = (await this.urlToBase64(url)) as string;
       const currentTime = this.getNowformatTime();
       const link = document.createElement("a");
-      link.href = base64Url
+      link.href = base64Url;
       link.download = name || `result-${currentTime}.mp4`;
       link.style.display = "none";
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
       URL.revokeObjectURL(link.href);
-
     } catch (error) {
       console.error("Download video error:", error);
     }
@@ -311,10 +310,10 @@ export default class FileManager {
   static saveDataToFile = (data: string, filename: string, type: string) => {
     if (/\.(jpg|jpeg|png|gif)$/.test(filename)) {
       fetch(data)
-        .then(response => response.blob())
-        .then(blob => {
+        .then((response) => response.blob())
+        .then((blob) => {
           const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
+          const a = document.createElement("a");
           a.href = url;
           a.download = filename;
           document.body.appendChild(a); // 添加到文档中
@@ -322,11 +321,11 @@ export default class FileManager {
           document.body.removeChild(a); // 从文档中移除
           URL.revokeObjectURL(url);
         })
-        .catch(error => console.error("图片下载错误:", error));
+        .catch((error) => console.error("图片下载错误:", error));
     } else {
       const blob = new Blob([data], { type });
       const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
+      const a = document.createElement("a");
       a.href = url;
       a.download = filename;
       document.body.appendChild(a); // 添加到文档中
@@ -334,5 +333,5 @@ export default class FileManager {
       document.body.removeChild(a); // 从文档中移除
       URL.revokeObjectURL(url);
     }
-  }
+  };
 }

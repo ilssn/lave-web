@@ -24,7 +24,10 @@ const AppAuth = () => {
     // Use env api-key
     if (env.NEXT_PUBLIC_API_KEY) {
       // Update app configuration from the store with result
-      updateConfig({ apiKey: env.NEXT_PUBLIC_API_KEY, showBrand: env.NEXT_PUBLIC_SHOW_BRAND });
+      updateConfig({
+        apiKey: env.NEXT_PUBLIC_API_KEY,
+        showBrand: env.NEXT_PUBLIC_SHOW_BRAND,
+      });
       if (isAuthPage) {
         replaceRouter("/");
       }

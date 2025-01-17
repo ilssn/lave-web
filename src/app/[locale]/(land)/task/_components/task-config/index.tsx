@@ -3,6 +3,7 @@
 import * as React from "react";
 
 import { CaretSortIcon } from "@radix-ui/react-icons";
+import { RotateCcw, StarsIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -19,16 +20,16 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { Label } from "@/components/ui/label";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { useClientTranslation } from "@/hooks/global";
-import { RotateCcw, StarsIcon } from "lucide-react";
+
 import { HistoryModal } from "../task-history";
 import BrowserForm from "./browser-from";
 import DynamicForm from "./dynamic-form";
@@ -36,7 +37,17 @@ import LinkTabs from "./link-tabs";
 import ModelForm from "./model-form";
 import ProxyForm from "./proxy-form";
 
-const TaskConfig = ({ taskData, onTaskDataChange, onTaskResult, taskResult, loading, onResetTaskData, onFetchSchema, setTaskResult, setTaskData }: any) => {
+const TaskConfig = ({
+  taskData,
+  onTaskDataChange,
+  onTaskResult,
+  taskResult,
+  loading,
+  onResetTaskData,
+  onFetchSchema,
+  setTaskResult,
+  setTaskData,
+}: any) => {
   const [showAdvancedConfig, setShowAdvancedConfig] = React.useState(true);
   const { t } = useClientTranslation();
 
@@ -51,71 +62,92 @@ const TaskConfig = ({ taskData, onTaskDataChange, onTaskResult, taskResult, load
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <Button className="" size="icon" variant="ghost" onClick={() => onResetTaskData("test")}>
+                      <Button
+                        className=""
+                        size="icon"
+                        variant="ghost"
+                        onClick={() => onResetTaskData("test")}
+                      >
                         <StarsIcon className="h-4 w-4" />
                       </Button>
                     </TooltipTrigger>
-                    <TooltipContent>
-                      快速测试
-                    </TooltipContent>
+                    <TooltipContent>快速测试</TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <Button className="" size="icon" variant="ghost" onClick={() => onResetTaskData("default")}>
+                      <Button
+                        className=""
+                        size="icon"
+                        variant="ghost"
+                        onClick={() => onResetTaskData("default")}
+                      >
                         <RotateCcw className="h-4 w-4" />
                       </Button>
                     </TooltipTrigger>
-                    <TooltipContent>
-                      重置任务
-                    </TooltipContent>
+                    <TooltipContent>重置任务</TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
               </div>
-
             </CardTitle>
-            <CardDescription>
-            </CardDescription>
+            <CardDescription></CardDescription>
           </div>
         </CardHeader>
         <CardContent className="max-h-[calc(100vh-24.5rem)] space-y-4 overflow-y-auto">
-
           <div className="w-full">
             <Label htmlFor="task-description">任务描述</Label>
-            <Textarea id="task-description" rows={4} placeholder="任务描述" className="w-full" value={taskData.taskDescription} onChange={(e) => onTaskDataChange("taskDescription", e.target.value)} />
+            <Textarea
+              id="task-description"
+              rows={4}
+              placeholder="任务描述"
+              className="w-full"
+              value={taskData.taskDescription}
+              onChange={(e) =>
+                onTaskDataChange("taskDescription", e.target.value)
+              }
+            />
           </div>
           <div className="w-full">
             <LinkTabs
               links={taskData.startUrls}
               setLinks={(links: string[]) => {
                 onTaskDataChange("startUrls", links);
-                onTaskDataChange("maxLinks", Math.max(taskData.maxLinks, links.length));
+                onTaskDataChange(
+                  "maxLinks",
+                  Math.max(taskData.maxLinks, links.length)
+                );
               }}
             />
           </div>
-
         </CardContent>
         <CardFooter className="flex justify-between space-x-4">
           {/* <Button variant="outline" className="w-full">历史记录</Button> */}
-          <HistoryModal setTaskResult={setTaskResult} setTaskData={setTaskData} />
+          <HistoryModal
+            setTaskResult={setTaskResult}
+            setTaskData={setTaskData}
+          />
           <Button
             className="w-full"
             disabled={loading || taskData.startUrls.length === 0}
             onClick={() => onTaskResult(taskData)}
           >
-            {loading ? `任务进行中... ${taskResult?.length || 0}/${taskData.searchModel === "deep" ? taskData.maxLinks : taskData.startUrls.length}` : "开始任务"}
+            {loading
+              ? `任务进行中... ${taskResult?.length || 0}/${taskData.searchModel === "deep" ? taskData.maxLinks : taskData.startUrls.length}`
+              : "开始任务"}
           </Button>
         </CardFooter>
       </Card>
 
       <Card className="w-full rounded-none">
-        <Collapsible open={showAdvancedConfig} onOpenChange={setShowAdvancedConfig}>
+        <Collapsible
+          open={showAdvancedConfig}
+          onOpenChange={setShowAdvancedConfig}
+        >
           <CardHeader className="flex-row items-center justify-between">
             <div className="flex-1 space-y-1">
               <CardTitle>{t("高级设置")}</CardTitle>
-              <CardDescription>
-              </CardDescription>
+              <CardDescription></CardDescription>
             </div>
             <CollapsibleTrigger asChild>
               <Button variant="ghost" size="sm">
@@ -128,10 +160,30 @@ const TaskConfig = ({ taskData, onTaskDataChange, onTaskResult, taskResult, load
             <CardContent className="max-h-[calc(100vh-24.5rem)] overflow-y-auto">
               <Tabs defaultValue="data-config" className="w-[400px]">
                 <TabsList className="grid w-full grid-cols-4">
-                  <TabsTrigger value="data-config" className="data-[state=active]:text-primary">数据设置</TabsTrigger>
-                  <TabsTrigger value="model-config" className="data-[state=active]:text-primary">模式设置</TabsTrigger>
-                  <TabsTrigger value="proxy-config" className="data-[state=active]:text-primary">代理设置</TabsTrigger>
-                  <TabsTrigger value="browser-config" className="data-[state=active]:text-primary">浏览器设置</TabsTrigger>
+                  <TabsTrigger
+                    value="data-config"
+                    className="data-[state=active]:text-primary"
+                  >
+                    数据设置
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="model-config"
+                    className="data-[state=active]:text-primary"
+                  >
+                    模式设置
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="proxy-config"
+                    className="data-[state=active]:text-primary"
+                  >
+                    代理设置
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="browser-config"
+                    className="data-[state=active]:text-primary"
+                  >
+                    浏览器设置
+                  </TabsTrigger>
                 </TabsList>
                 <TabsContent value="data-config">
                   <DynamicForm
@@ -141,13 +193,22 @@ const TaskConfig = ({ taskData, onTaskDataChange, onTaskResult, taskResult, load
                   />
                 </TabsContent>
                 <TabsContent value="model-config">
-                  <ModelForm taskData={taskData} onTaskDataChange={onTaskDataChange} />
+                  <ModelForm
+                    taskData={taskData}
+                    onTaskDataChange={onTaskDataChange}
+                  />
                 </TabsContent>
                 <TabsContent value="proxy-config">
-                  <ProxyForm taskData={taskData} onTaskDataChange={onTaskDataChange} />
+                  <ProxyForm
+                    taskData={taskData}
+                    onTaskDataChange={onTaskDataChange}
+                  />
                 </TabsContent>
                 <TabsContent value="browser-config">
-                  <BrowserForm taskData={taskData} onTaskDataChange={onTaskDataChange} />
+                  <BrowserForm
+                    taskData={taskData}
+                    onTaskDataChange={onTaskDataChange}
+                  />
                 </TabsContent>
               </Tabs>
             </CardContent>
@@ -156,12 +217,8 @@ const TaskConfig = ({ taskData, onTaskDataChange, onTaskResult, taskResult, load
         {/* <CardFooter className="flex justify-between">
         </CardFooter> */}
       </Card>
-
     </div>
-
   );
 };
-
-
 
 export default TaskConfig;

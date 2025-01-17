@@ -1,10 +1,18 @@
+import { useState } from "react";
+
+import { PlusIcon, Trash2Icon } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { PlusIcon, Trash2Icon } from "lucide-react";
-import { useState } from "react";
 
-const LinkInput = ({ links, setLinks }: { links: string[], setLinks: (links: string[]) => void }) => {
+const LinkInput = ({
+  links,
+  setLinks,
+}: {
+  links: string[];
+  setLinks: (links: string[]) => void;
+}) => {
   // const [links, setLinks] = useState<string[]>([]);
   const [currentLink, setCurrentLink] = useState<string>("");
 
@@ -20,8 +28,11 @@ const LinkInput = ({ links, setLinks }: { links: string[], setLinks: (links: str
   const handleAddLink = () => {
     if (currentLink.trim() !== "") {
       let formattedLink = currentLink.trim();
-      if (!formattedLink.startsWith("http://") && !formattedLink.startsWith("https://")) {
-        formattedLink = "https://" + formattedLink;
+      if (
+        !formattedLink.startsWith("http://") &&
+        !formattedLink.startsWith("https://")
+      ) {
+        formattedLink = `https://${formattedLink}`;
       }
       setLinks([...links, formattedLink]);
       setCurrentLink("");
@@ -44,16 +55,18 @@ const LinkInput = ({ links, setLinks }: { links: string[], setLinks: (links: str
         <Input
           id="start-url"
           type="text"
-          className="w-full p-2 border rounded"
+          className="w-full rounded border p-2"
           value={currentLink}
           onKeyDown={handleKeyDown}
           onChange={handleChange}
           placeholder="输入链接并回车/添加"
         />
-        <Button className="absolute right-[2px] top-[2px] hover:text-primary"
+        <Button
+          className="absolute right-[2px] top-[2px] hover:text-primary"
           size="sm"
           variant="ghost"
-          onClick={() => handleAddLink()}>
+          onClick={() => handleAddLink()}
+        >
           <PlusIcon className="h-4 w-4 hover:scale-110" />
         </Button>
       </div>
@@ -62,7 +75,7 @@ const LinkInput = ({ links, setLinks }: { links: string[], setLinks: (links: str
           <div key={index} className="relative">
             <Input
               type="text"
-              className="w-full p-2 border rounded mt-1"
+              className="mt-1 w-full rounded border p-2"
               value={link}
               onChange={(e) => {
                 const newLinks = [...links];
@@ -70,8 +83,13 @@ const LinkInput = ({ links, setLinks }: { links: string[], setLinks: (links: str
                 setLinks(newLinks);
               }}
             />
-            <Button variant="ghost" size="sm" className="absolute right-[2px] top-[2px] hover:text-red-600" onClick={() => removeLink(index)}>
-              <Trash2Icon className="w-4 h-4 hover:scale-110" />
+            <Button
+              variant="ghost"
+              size="sm"
+              className="absolute right-[2px] top-[2px] hover:text-red-600"
+              onClick={() => removeLink(index)}
+            >
+              <Trash2Icon className="h-4 w-4 hover:scale-110" />
             </Button>
           </div>
         ))}
