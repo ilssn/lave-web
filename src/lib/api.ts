@@ -51,4 +51,22 @@ const apiFetch = async (
   return response;
 };
 
-export { apiAuth, apiFetch };
+const apiCrawler = async (
+  endpoint: string,
+  options?: RequestInit
+): Promise<Response> => {
+  const url = `${env.NEXT_PUBLIC_CRAWLER_API_URL}/${endpoint}`;
+  const { apiKey, language } = useAppStore.getState();
+
+  const headers = new Headers(options?.headers);
+  if (apiKey) {
+    headers.set("Authorization", `Bearer ${apiKey}`);
+  }
+  // if (language) {
+  //   headers.set("Lang", langToCountry(language));
+  // }
+  return await fetch(url, { ...options, headers: headers });
+};
+
+export { apiAuth, apiCrawler, apiFetch };
+

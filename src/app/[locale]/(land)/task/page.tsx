@@ -5,6 +5,7 @@ import { useState } from "react";
 
 import LandHeader from "@/components/common/land-header";
 
+import { apiCrawler } from "@/lib/api";
 import { useHistoryStore } from "@/stores";
 import { HistoryType } from "@/stores/slices/history-slice";
 import TaskConfig from "./_components/task-config";
@@ -176,7 +177,7 @@ const TaskPage = () => {
 
   const fetchSchema = async (description: string) => {
     try {
-      const response = await fetch("http://192.168.199.229:3000/crawler/generate-schema", {
+      const response = await apiCrawler("crawler/generate-schema", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -225,7 +226,7 @@ const TaskPage = () => {
   const handleRunTask = async (data: any) => {
     try {
       setLoading(true);
-      const response = await fetch("http://192.168.199.229:3000/crawler/task", {
+      const response = await apiCrawler("crawler/task", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -241,7 +242,9 @@ const TaskPage = () => {
       let taskStatus = "processing";
 
       while (taskStatus === "processing") {
-        const statusResponse = await fetch(`http://192.168.199.229:3000/crawler/task/${taskId}`);
+        const statusResponse = await apiCrawler(`crawler/task/${taskId}`, {
+          method: "GET",
+        });
         if (!statusResponse.ok) {
           throw new Error("查询任务状态失败");
         }

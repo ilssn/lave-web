@@ -16,6 +16,7 @@ export const env = createEnv({
     NEXT_PUBLIC_DEFAULT_MODEL_NAME: z.string(),
     NEXT_PUBLIC_DEFAULT_REGION: z.string(),
     NEXT_PUBLIC_DEFAULT_LOCALE: z.string(),
+    NEXT_PUBLIC_CRAWLER_API_URL: z.string(),
   },
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
@@ -29,6 +30,7 @@ export const env = createEnv({
     NEXT_PUBLIC_DEFAULT_MODEL_NAME: process.env.NEXT_PUBLIC_DEFAULT_MODEL_NAME,
     NEXT_PUBLIC_DEFAULT_REGION: process.env.NEXT_PUBLIC_DEFAULT_REGION,
     NEXT_PUBLIC_DEFAULT_LOCALE: process.env.NEXT_PUBLIC_DEFAULT_LOCALE,
+    NEXT_PUBLIC_CRAWLER_API_URL: process.env.NEXT_PUBLIC_CRAWLER_API_URL,
   },
   onValidationError: (error: ZodError) => {
     console.error(

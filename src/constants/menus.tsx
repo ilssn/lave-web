@@ -25,9 +25,9 @@ export const APP_ROUTE_MENU: MenuProps[] = [
   },
   {
     id: 2,
-    label: "v-gen:title",
+    label: "task:title",
     icon: <Home />,
-    path: "/v-gen",
+    path: "/task",
     auth: true,
   },
 ];
